@@ -15,8 +15,13 @@ class CreateSlikaTable extends Migration
     {
         Schema::create('slika', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('slika_id')->unsigned();
-            $table->foreign('slika_id')->references('id')->on('tehnikapolja');
+            $table->bigInteger('slika_tehnika')->unsigned()->nullable();
+            $table->foreign('slika_tehnika')->references('id')->on('tehnikapolja');
+            $table->bigInteger('slika_hrana')->unsigned()->nullable();
+            $table->foreign('slika_hrana')->references('id')->on('hranapolja');
+            $table->bigInteger('slika_nekretnine')->unsigned()->nullable();
+            $table->foreign('slika_nekretnine')->references('id')->on('nekretninepolja');
+
             $table->string('url');
             $table->timestamps();
         });

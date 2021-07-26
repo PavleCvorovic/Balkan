@@ -17,8 +17,21 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('getall', 'tehnikaController@getAll');
-Route::get('/getid/{id}', 'tehnikaController@getId');
-Route::delete('delall', 'tehnikaController@delAll');
-Route::delete('delId/{id}', 'tehnikaController@delId');
-Route::post('addPost', 'tehnikaController@addPost');
+//Tehnika api
+Route::get('getall_Tehnika', 'tehnikaController@getAll');
+Route::get('getid_Tehnika/{id}', 'tehnikaController@getId');
+Route::get('delall_Tehnika', 'tehnikaController@delAll');
+Route::get('delId_Tehnika/{id}', 'tehnikaController@delId');
+Route::post('addPost_Tehnika', 'tehnikaController@addPost');
+//Hrana api
+Route::get('getall_Hrana', 'hranaController@getAll');
+Route::get('getid_Hrana/{id}', 'hranaController@getId');
+Route::get('delall_Hrana', 'hranaController@delAll');
+Route::get('delId_Hrana/{id}', 'hranaController@delId');
+Route::post('addPost_Hrana', 'hranaController@addPost');
+//Nekretnine api
+Route::get('getall_Nekretnine', 'nekretnineController@getAll');
+Route::get('getid_Nekretnine/{id}', 'nekretnineController@getId');
+Route::get('delall_Nekretnine', 'nekretnineController@delAll');
+Route::get('delId_Nekretnine/{id}', 'nekretnineController@delId');
+Route::post('addPost_Nekretnine', 'nekretnineController@addPost');

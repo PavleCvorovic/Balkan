@@ -2,46 +2,48 @@
 
 
 namespace App\Http\Controllers;
+
+
 use App\Models\slika;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\HranaiPice;
 use Illuminate\Http\Request;
-use App\Models\tehnikapolja;
 use Illuminate\Support\Facades\DB;
 
-class tehnikaController extends Controller
+class hranaController extends \Illuminate\Routing\Controller
 {
 
     public function getAll() {
-    return tehnikapolja::all();
+        return HranaiPice::all();
     }
 
     public  function getId($id){
-        return tehnikapolja::find($id);
+        return HranaiPice::find($id);
     }
     public function delAll(){
-        DB::select('delete  from tehnikapolja');
-        return tehnikapolja::all();
+        DB::select('delete  from hranapolja');
+        return HranaiPice::all();
     }
     public function delId($id){
-        DB::select('delete  from slika where slika_tehnika='.$id);
-        DB::select('delete  from tehnikapolja where id='.$id);
-        return tehnikapolja::all();
+        DB::select('delete  from slika where slika_hrana='.$id);
+        DB::select('delete  from hranapolja where id='.$id);
+        return HranaiPice::all();
     }
     public function addPost(Request $request)
     {
-        $produkt = new tehnikapolja();
-        $produkt->tehnika_vrsta = $request->tehnika_vrsta;
+        $produkt = new HranaiPice();
+        $produkt->hrana_vrsta = $request->hrana_vrsta;
+        $produkt->kolicina = $request->kolicina;
         $produkt->naziv = $request->naziv;
         $produkt->opis = $request->opis;
-        $produkt->stanje = $request->stanje;
+        $produkt->domace = $request->domace;
         $produkt->lokacija = $request->lokacija;
         $produkt->kontakt = $request->kontakt;
         $produkt->cijena = $request->cijena;
         $produkt->sirina = $request->sirina;
         $produkt->duzina = $request->duzina;
         $produkt->user = $request->user;
-        $produkt->karakteristike = $request->karakteristike;
-        $produkt->godina_proizvodnje = $request->godina_proizvodnje;
+
+
         $produkt->save();
         $zadnji = $produkt->id;
 
@@ -55,7 +57,7 @@ class tehnikaController extends Controller
                 $path = $file->store('public/file');
                 $name = $file->getClientOriginalName();
                 $slika=new slika();
-                $slika->slika_tehnika=$zadnji;
+                $slika->slika_hrana=$zadnji;
                 $slika->url=$name;
                 $slika->save();
 

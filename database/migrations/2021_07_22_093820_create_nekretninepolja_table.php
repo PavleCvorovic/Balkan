@@ -17,13 +17,13 @@ class CreateNekretninepoljaTable extends Migration
             $table->id();
             $table->string('nekretnine_vrsta');
             $table->foreign('nekretnine_vrsta')->references('tip')->on('nekretnine');
+            $table->string('naziv');
             $table->string('kvadratura');
             $table->string('opis');
             $table->string('tip_vlasnistva');
             $table->string('lokacija');
             $table->string('cijena');
             $table->string('kontakt');
-            $table->string('slika');
             $table->float('sirina');
             $table->float('duzina');
             $table->string('user');

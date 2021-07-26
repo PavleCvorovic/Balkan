@@ -18,13 +18,13 @@ class CreateHranapoljaTable extends Migration
             $table->string('hrana_vrsta');
             $table->foreign('hrana_vrsta')->references('tip')->on('hrana_ipice');
             $table->boolean('domace');
-
+            $table->string('naziv');
             $table->string('opis');
             $table->string('kolicina');
             $table->string('lokacija');
             $table->string('cijena');
             $table->string('kontakt');
-            $table->string('slika');
+
             $table->float('sirina');
             $table->float('duzina');
             $table->string('user');
