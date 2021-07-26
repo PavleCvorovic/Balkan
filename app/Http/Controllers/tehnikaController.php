@@ -60,7 +60,7 @@ class tehnikaController extends Controller
 
             }
         }
-
+echo 'ja';
         return redirect('upload-multiple-image')->with('status', 'Multiple Image has been uploaded into db and storage directory');
 
 
