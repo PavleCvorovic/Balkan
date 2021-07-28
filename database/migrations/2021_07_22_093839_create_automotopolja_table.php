@@ -17,6 +17,7 @@ class CreateAutomotopoljaTable extends Migration
             $table->id();
             $table->string('automoto_vrsta');
             $table->foreign('automoto_vrsta')->references('tip')->on('automoto');
+            $table->string('naziv');
             $table->string('marka');
             $table->string('model');
             $table->string('godina_proizvodnje');
@@ -30,10 +31,10 @@ class CreateAutomotopoljaTable extends Migration
             $table->string('lokacija');
             $table->string('cijena');
             $table->string('kontakt');
-            $table->string('slika');
+
             $table->float('sirina');
             $table->float('duzina');
-            $table->float('user');
+            $table->string('user');
 
 
             $table->timestamps();

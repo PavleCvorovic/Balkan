@@ -2,54 +2,56 @@
 
 
 namespace App\Http\Controllers;
+
+
+use App\Models\raznopolja;
 use App\Models\slika;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Models\tehnikapolja;
 use Illuminate\Support\Facades\DB;
+use function Sodium\add;
 
-class tehnikaController extends Controller
+class raznoController extends \Illuminate\Routing\Controller
 {
-
-    public function getAll() {
-        $svi = tehnikapolja::all();
+    public function getAll()
+    {
+        $svi = raznopolja::all();
         for ($i = 0; $i < sizeof($svi); $i++) {
-            $svi[$i]->slika = slika::where('slika_tehnika', $svi[$i]->id)->first();
+            $svi[$i]->slika = slika::where('slika_razno', $svi[$i]->id)->first();
         }
         return $svi;
     }
 
     public  function getId($id){
-        return tehnikapolja::find($id);
-        $rezultat=  DB::select('select url from slika where slika_tehnika='.$id);
-        $rezultat1->podaci=$rezultat;
+        $rezultat1= raznopolja::find($id);
+        $rezultat=  DB::select('select url from slika where slika_razno='.$id);
+$rezultat1->podaci=$rezultat;
         return $rezultat1;
     }
     public function delAll(){
-        DB::select('delete from slika where slika_tehnika>=1 ');
-        DB::select('delete  from tehnikapolja');
-        return tehnikapolja::all();
+        DB::select('delete from slika where slika_razno>=1 ');
+        DB::select('delete  from raznopolja');
+        return raznopolja::all();
     }
     public function delId($id){
-        DB::select('delete  from slika where slika_tehnika='.$id);
-        DB::select('delete  from tehnikapolja where id='.$id);
-        return tehnikapolja::all();
+        DB::select('delete  from slika where slika_razno='.$id);
+        DB::select('delete  from raznopolja where id='.$id);
+        return raznopolja::all();
     }
     public function addPost(Request $request)
     {
-        $produkt = new tehnikapolja();
-        $produkt->tehnika_vrsta = $request->tehnika_vrsta;
+        $produkt = new raznopolja();
+        $produkt->razno_vrsta = $request->razno_vrsta;
         $produkt->naziv = $request->naziv;
+
         $produkt->opis = $request->opis;
-        $produkt->stanje = $request->stanje;
+        $produkt->cijena = $request->cijena;
         $produkt->lokacija = $request->lokacija;
         $produkt->kontakt = $request->kontakt;
-        $produkt->cijena = $request->cijena;
+
         $produkt->sirina = $request->sirina;
         $produkt->duzina = $request->duzina;
         $produkt->user = $request->user;
-        $produkt->karakteristike = $request->karakteristike;
-        $produkt->godina_proizvodnje = $request->godina_proizvodnje;
+
         $produkt->save();
         $zadnji = $produkt->id;
 
@@ -57,6 +59,7 @@ class tehnikaController extends Controller
         if($request->hasFile('prva_slika')){
             $name = $request->file('prva_slika')->getClientOriginalName();
             $path = $request->file('prva_slika')->storeAs('public/file',$name);
+
             $slika=new slika();
             $slika->slika_razno=$zadnji;
             $slika->url=$name;
@@ -64,41 +67,42 @@ class tehnikaController extends Controller
         }
         else{ echo 'nema';}
 
+
+
         if ($request->hasfile('slike')) {
             foreach ($request->file('slike') as $key => $file) {
-                $path = $file->store('public/file');
                 $name = $file->getClientOriginalName();
+                $path = $file->storeAs('public/file',$name);
+
                 $slika=new slika();
-                $slika->slika_tehnika=$zadnji;
+                $slika->slika_razno=$zadnji;
                 $slika->url=$name;
                 $slika->save();
 
             }
         }
 
-    return tehnikapolja::all();
+return raznopolja::all();
 
 
     }
+
     public function modPostbyId(Request $request){
-        $post= tehnikapolja::find($request->id);
-        $post->tehnika_vrsta = $request->tehnika_vrsta;
+        $post= raznopolja::find($request->id);
+        $post->razno_vrsta = $request->razno_vrsta;
         $post->naziv = $request->naziv;
+
         $post->opis = $request->opis;
-        $post->stanje = $request->stanje;
+        $post->cijena = $request->cijena;
         $post->lokacija = $request->lokacija;
         $post->kontakt = $request->kontakt;
-        $post->cijena = $request->cijena;
+
         $post->sirina = $request->sirina;
         $post->duzina = $request->duzina;
         $post->user = $request->user;
-        $post->karakteristike = $request->karakteristike;
-        $post->godina_proizvodnje = $request->godina_proizvodnje;
+
         $post->save();
-
-
-        return tehnikapolja::all();
+        return raznopolja::all();
     }
-
 
 }

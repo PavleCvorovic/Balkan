@@ -22,7 +22,7 @@ class CreatePosaopoljaTable extends Migration
             $table->string('lokacija');
             $table->string('plata');
             $table->string('kontakt');
-            $table->string('slika');
+
             $table->float('sirina');
             $table->float('duzina');
             $table->string('user');

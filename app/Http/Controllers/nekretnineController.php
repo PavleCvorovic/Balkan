@@ -12,13 +12,21 @@ use Illuminate\Support\Facades\DB;
 class nekretnineController extends Controller
 {
     public function getAll() {
-    return nekretninepolja::all();
+        $svi = nekretninepolja::all();
+        for ($i = 0; $i < sizeof($svi); $i++) {
+            $svi[$i]->slika = slika::where('slika_nekretnine', $svi[$i]->id)->first();
+        }
+        return $svi;
 }
 
     public  function getId($id){
     return nekretninepolja::find($id);
+        $rezultat=  DB::select('select url from slika where slika_nekretnine='.$id);
+        $rezultat1->podaci=$rezultat;
+        return $rezultat1;
 }
     public function delAll(){
+        DB::select('delete from slika where slika_nekretnine>=1 ');
     DB::select('delete  from nekretninepolja');
     return nekretninepolja::all();
 }
@@ -46,10 +54,16 @@ class nekretnineController extends Controller
     $zadnji = $produkt->id;
 
 
-    $validatedData = $request->validate([
-        'slike' => 'required',
-        'slike.*' => 'mimes:jpg,png,jpeg,gif,svg'
-    ]);
+    if($request->hasFile('prva_slika')){
+        $name = $request->file('prva_slika')->getClientOriginalName();
+        $path = $request->file('prva_slika')->storeAs('public/file',$name);
+        $slika=new slika();
+        $slika->slika_razno=$zadnji;
+        $slika->url=$name;
+        $slika->save();
+    }
+    else{ echo 'nema';}
+
     if ($request->hasfile('slike')) {
         foreach ($request->file('slike') as $key => $file) {
             $path = $file->store('public/file');
@@ -62,7 +76,26 @@ class nekretnineController extends Controller
         }
     }
 
-    return redirect('upload-multiple-image')->with('status', 'Multiple Image has been uploaded into db and storage directory');
+nekretninepolja::all();
 
 
-}}
+}
+    public function modPostbyId(Request $request){
+        $post= nekretninepolja::find($request->id);
+        $post->nekretnine_vrsta = $request->nekretnine_vrsta;
+        $post->naziv = $request->naziv;
+        $post->kvadratura = $request->kvadratura;
+        $post->opis = $request->opis;
+        $post->tip_vlasnistva = $request->tip_vlasnistva;
+        $post->lokacija = $request->lokacija;
+        $post->kontakt = $request->kontakt;
+        $post->cijena = $request->cijena;
+        $post->sirina = $request->sirina;
+        $post->duzina = $request->duzina;
+        $post->user = $request->user;
+
+        $post->save();
+
+        $post->save();
+        return nekretninepolja::all();
+    }}

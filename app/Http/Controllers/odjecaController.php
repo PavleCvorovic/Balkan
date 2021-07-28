@@ -2,44 +2,46 @@
 
 
 namespace App\Http\Controllers;
+
+
+use App\Models\odjecapolja;
 use App\Models\slika;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Models\tehnikapolja;
 use Illuminate\Support\Facades\DB;
 
-class tehnikaController extends Controller
+class odjecaController extends \Illuminate\Routing\Controller
 {
 
     public function getAll() {
-        $svi = tehnikapolja::all();
+        $svi = odjecapolja::all();
         for ($i = 0; $i < sizeof($svi); $i++) {
-            $svi[$i]->slika = slika::where('slika_tehnika', $svi[$i]->id)->first();
+            $svi[$i]->slika = slika::where('slika_odjeca', $svi[$i]->id)->first();
         }
         return $svi;
     }
 
     public  function getId($id){
-        return tehnikapolja::find($id);
-        $rezultat=  DB::select('select url from slika where slika_tehnika='.$id);
+        return odjecapolja::find($id);
+        $rezultat=  DB::select('select url from slika where slika_odjeca='.$id);
         $rezultat1->podaci=$rezultat;
         return $rezultat1;
     }
     public function delAll(){
-        DB::select('delete from slika where slika_tehnika>=1 ');
-        DB::select('delete  from tehnikapolja');
-        return tehnikapolja::all();
+        DB::select('delete from slika where slika_odjeca>=1 ');
+        DB::select('delete  from odjecapolja');
+        return odjecapolja::all();
     }
     public function delId($id){
-        DB::select('delete  from slika where slika_tehnika='.$id);
-        DB::select('delete  from tehnikapolja where id='.$id);
-        return tehnikapolja::all();
+        DB::select('delete  from slika where slika_odjeca='.$id);
+        DB::select('delete  from odjecapolja where id='.$id);
+        return odjecapolja::all();
     }
     public function addPost(Request $request)
     {
-        $produkt = new tehnikapolja();
-        $produkt->tehnika_vrsta = $request->tehnika_vrsta;
+        $produkt = new odjecapolja();
+        $produkt->odjeca_vrsta = $request->odjeca_vrsta;
         $produkt->naziv = $request->naziv;
+        $produkt->dimenzije = $request->dimenzije;
         $produkt->opis = $request->opis;
         $produkt->stanje = $request->stanje;
         $produkt->lokacija = $request->lokacija;
@@ -48,8 +50,7 @@ class tehnikaController extends Controller
         $produkt->sirina = $request->sirina;
         $produkt->duzina = $request->duzina;
         $produkt->user = $request->user;
-        $produkt->karakteristike = $request->karakteristike;
-        $produkt->godina_proizvodnje = $request->godina_proizvodnje;
+
         $produkt->save();
         $zadnji = $produkt->id;
 
@@ -69,21 +70,22 @@ class tehnikaController extends Controller
                 $path = $file->store('public/file');
                 $name = $file->getClientOriginalName();
                 $slika=new slika();
-                $slika->slika_tehnika=$zadnji;
+                $slika->slika_odjeca=$zadnji;
                 $slika->url=$name;
                 $slika->save();
 
             }
         }
 
-    return tehnikapolja::all();
 
+return odjecapolja::all();
 
     }
     public function modPostbyId(Request $request){
-        $post= tehnikapolja::find($request->id);
-        $post->tehnika_vrsta = $request->tehnika_vrsta;
+        $post= odjecapolja::find($request->id);
+        $post->odjeca_vrsta = $request->odjeca_vrsta;
         $post->naziv = $request->naziv;
+        $post->dimenzije = $request->dimenzije;
         $post->opis = $request->opis;
         $post->stanje = $request->stanje;
         $post->lokacija = $request->lokacija;
@@ -92,13 +94,8 @@ class tehnikaController extends Controller
         $post->sirina = $request->sirina;
         $post->duzina = $request->duzina;
         $post->user = $request->user;
-        $post->karakteristike = $request->karakteristike;
-        $post->godina_proizvodnje = $request->godina_proizvodnje;
+
         $post->save();
-
-
-        return tehnikapolja::all();
+        return odjecapolja::all();
     }
-
-
 }

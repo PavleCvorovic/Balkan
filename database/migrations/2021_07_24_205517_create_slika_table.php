@@ -21,6 +21,14 @@ class CreateSlikaTable extends Migration
             $table->foreign('slika_hrana')->references('id')->on('hranapolja');
             $table->bigInteger('slika_nekretnine')->unsigned()->nullable();
             $table->foreign('slika_nekretnine')->references('id')->on('nekretninepolja');
+            $table->bigInteger('slika_automoto')->unsigned()->nullable();
+            $table->foreign('slika_automoto')->references('id')->on('automotopolja');
+            $table->bigInteger('slika_odjeca')->unsigned()->nullable();
+            $table->foreign('slika_odjeca')->references('id')->on('odjecapolja');
+            $table->bigInteger('slika_posao')->unsigned()->nullable();
+            $table->foreign('slika_posao')->references('id')->on('posaopolja');
+            $table->bigInteger('slika_razno')->unsigned()->nullable();
+            $table->foreign('slika_razno')->references('id')->on('raznopolja');
 
             $table->string('url');
             $table->timestamps();

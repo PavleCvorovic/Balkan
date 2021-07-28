@@ -17,6 +17,15 @@ class CreateRaznopoljaTable extends Migration
             $table->id();
             $table->string('razno_vrsta');
             $table->foreign('razno_vrsta')->references('tip')->on('razno');
+            $table->string('naziv');
+            $table->string('opis');
+            $table->string('lokacija');
+            $table->string('cijena');
+            $table->string('kontakt');
+
+            $table->float('sirina');
+            $table->float('duzina');
+            $table->string('user');
             $table->timestamps();
         });
     }

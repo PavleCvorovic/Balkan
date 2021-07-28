@@ -2,44 +2,54 @@
 
 
 namespace App\Http\Controllers;
+
+
+use App\Models\automotopolja;
 use App\Models\slika;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Models\tehnikapolja;
 use Illuminate\Support\Facades\DB;
 
-class tehnikaController extends Controller
+class automotoController extends \Illuminate\Routing\Controller
 {
 
     public function getAll() {
-        $svi = tehnikapolja::all();
-        for ($i = 0; $i < sizeof($svi); $i++) {
-            $svi[$i]->slika = slika::where('slika_tehnika', $svi[$i]->id)->first();
+        $svi= automotopolja::all();
+        for($i=0; $i<sizeof($svi);$i++){
+            $svi[$i]->slika = slika::where('slika_automoto', $svi[$i]->id)->first();
+
         }
-        return $svi;
+
     }
 
     public  function getId($id){
-        return tehnikapolja::find($id);
-        $rezultat=  DB::select('select url from slika where slika_tehnika='.$id);
+        $rezultat1= automotopolja::find($id);
+        $rezultat=  DB::select('select url from slika where slika_automoto='.$id);
         $rezultat1->podaci=$rezultat;
         return $rezultat1;
     }
     public function delAll(){
-        DB::select('delete from slika where slika_tehnika>=1 ');
-        DB::select('delete  from tehnikapolja');
-        return tehnikapolja::all();
+        DB::select('delete from slika where slika_automoto>=1 ');
+        DB::select('delete  from automotopolja');
+        return automotopolja::all();
     }
     public function delId($id){
-        DB::select('delete  from slika where slika_tehnika='.$id);
-        DB::select('delete  from tehnikapolja where id='.$id);
-        return tehnikapolja::all();
+        DB::select('delete  from slika where slika_automoto='.$id);
+        DB::select('delete  from automotopolja where id='.$id);
+        return automotopolja::all();
     }
     public function addPost(Request $request)
     {
-        $produkt = new tehnikapolja();
-        $produkt->tehnika_vrsta = $request->tehnika_vrsta;
+        $produkt = new automotopolja();
+        $produkt->automoto_vrsta = $request->automoto_vrsta;
         $produkt->naziv = $request->naziv;
+        $produkt->marka = $request->marka;
+        $produkt->model = $request->model;
+        $produkt->godina_proizvodnje = $request->godina_proizvodnje;
+        $produkt->kubikaza = $request->kubikaza;
+        $produkt->kilometraza = $request->kilometraza;
+        $produkt->boja = $request->boja;
+        $produkt->registrovan = $request->registrovan;
+        $produkt->datum_isteka = $request->datum_isteka;
         $produkt->opis = $request->opis;
         $produkt->stanje = $request->stanje;
         $produkt->lokacija = $request->lokacija;
@@ -48,8 +58,7 @@ class tehnikaController extends Controller
         $produkt->sirina = $request->sirina;
         $produkt->duzina = $request->duzina;
         $produkt->user = $request->user;
-        $produkt->karakteristike = $request->karakteristike;
-        $produkt->godina_proizvodnje = $request->godina_proizvodnje;
+
         $produkt->save();
         $zadnji = $produkt->id;
 
@@ -69,21 +78,29 @@ class tehnikaController extends Controller
                 $path = $file->store('public/file');
                 $name = $file->getClientOriginalName();
                 $slika=new slika();
-                $slika->slika_tehnika=$zadnji;
+                $slika->slika_automoto=$zadnji;
                 $slika->url=$name;
                 $slika->save();
 
             }
         }
 
-    return tehnikapolja::all();
+    return automotopolja::all();
 
 
     }
     public function modPostbyId(Request $request){
-        $post= tehnikapolja::find($request->id);
-        $post->tehnika_vrsta = $request->tehnika_vrsta;
+        $post= automotopolja::find($request->id);
+        $post->automoto_vrsta = $request->automoto_vrsta;
         $post->naziv = $request->naziv;
+        $post->marka = $request->marka;
+        $post->model = $request->model;
+        $post->godina_proizvodnje = $request->godina_proizvodnje;
+        $post->kubikaza = $request->kubikaza;
+        $post->kilometraza = $request->kilometraza;
+        $post->boja = $request->boja;
+        $post->registrovan = $request->registrovan;
+        $post->datum_isteka = $request->datum_isteka;
         $post->opis = $request->opis;
         $post->stanje = $request->stanje;
         $post->lokacija = $request->lokacija;
@@ -92,13 +109,12 @@ class tehnikaController extends Controller
         $post->sirina = $request->sirina;
         $post->duzina = $request->duzina;
         $post->user = $request->user;
-        $post->karakteristike = $request->karakteristike;
-        $post->godina_proizvodnje = $request->godina_proizvodnje;
+
         $post->save();
 
 
-        return tehnikapolja::all();
+        $post->save();
+        return automotopolja::all();
     }
-
 
 }

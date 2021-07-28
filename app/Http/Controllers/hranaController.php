@@ -13,13 +13,21 @@ class hranaController extends \Illuminate\Routing\Controller
 {
 
     public function getAll() {
-        return HranaiPice::all();
+        $svi = HranaiPice::all();
+        for ($i = 0; $i < sizeof($svi); $i++) {
+            $svi[$i]->slika = slika::where('slika_hrana', $svi[$i]->id)->first();
+        }
+        return $svi;
     }
 
     public  function getId($id){
         return HranaiPice::find($id);
+        $rezultat=  DB::select('select url from slika where slika_hrana='.$id);
+        $rezultat1->podaci=$rezultat;
+        return $rezultat1;
     }
     public function delAll(){
+        DB::select('delete from slika where slika_hrana>=1 ');
         DB::select('delete  from hranapolja');
         return HranaiPice::all();
     }
@@ -48,10 +56,16 @@ class hranaController extends \Illuminate\Routing\Controller
         $zadnji = $produkt->id;
 
 
-        $validatedData = $request->validate([
-            'slike' => 'required',
-            'slike.*' => 'mimes:jpg,png,jpeg,gif,svg'
-        ]);
+        if($request->hasFile('prva_slika')){
+            $name = $request->file('prva_slika')->getClientOriginalName();
+            $path = $request->file('prva_slika')->storeAs('public/file',$name);
+            $slika=new slika();
+            $slika->slika_razno=$zadnji;
+            $slika->url=$name;
+            $slika->save();
+        }
+        else{ echo 'nema';}
+
         if ($request->hasfile('slike')) {
             foreach ($request->file('slike') as $key => $file) {
                 $path = $file->store('public/file');
@@ -64,7 +78,27 @@ class hranaController extends \Illuminate\Routing\Controller
             }
         }
 
-        return redirect('upload-multiple-image')->with('status', 'Multiple Image has been uploaded into db and storage directory');
+ return HranaiPice::all();
 
 
-    }}
+    }
+    public function modPostbyId(Request $request){
+        $post= HranaiPice::find($request->id);
+
+        $post->hrana_vrsta = $request->hrana_vrsta;
+        $post->kolicina = $request->kolicina;
+        $post->naziv = $request->naziv;
+        $post->opis = $request->opis;
+        $post->domace = $request->domace;
+        $post->lokacija = $request->lokacija;
+        $post->kontakt = $request->kontakt;
+        $post->cijena = $request->cijena;
+        $post->sirina = $request->sirina;
+        $post->duzina = $request->duzina;
+        $post->user = $request->user;
+
+
+        $post->save();
+        return HranaiPice::all();
+    }
+}
