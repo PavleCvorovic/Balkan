@@ -15,8 +15,8 @@ class CreatePosaopoljaTable extends Migration
     {
         Schema::create('posaopolja', function (Blueprint $table) {
             $table->id();
-            $table->string('posao_vrsta');
-            $table->foreign('posao_vrsta')->references('tip')->on('posao');
+            $table->bigInteger('posao_vrsta')->unsigned();
+            $table->foreign('posao_vrsta')->references('id')->on('posao');
             $table->string('naziv');
             $table->string('opis');
             $table->string('lokacija');

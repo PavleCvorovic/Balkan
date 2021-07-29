@@ -15,25 +15,25 @@ class CreateAutomotopoljaTable extends Migration
     {
         Schema::create('automotopolja', function (Blueprint $table) {
             $table->id();
-            $table->string('automoto_vrsta');
-            $table->foreign('automoto_vrsta')->references('tip')->on('automoto');
+            $table->bigInteger('automoto_vrsta')->unsigned();
+            $table->foreign('automoto_vrsta')->references('id')->on('automoto');
             $table->string('naziv');
             $table->string('marka');
             $table->string('model');
-            $table->string('godina_proizvodnje');
-            $table->string('kilometraza');
-            $table->string('kubikaza');
-            $table->string('boja');
-            $table->boolean('registrovan');
-            $table->string('datum_isteka');
+            $table->string('godina_proizvodnje')->nullable();
+            $table->string('kilometraza')->nullable();
+            $table->string('kubikaza')->nullable();
+            $table->string('boja')->nullable();
+            $table->boolean('registrovan')->nullable();
+            $table->string('datum_isteka')->nullable();
             $table->string('opis');
             $table->string('stanje');
-            $table->string('lokacija');
+            $table->string('lokacija')->nullable();
             $table->string('cijena');
             $table->string('kontakt');
 
-            $table->float('sirina');
-            $table->float('duzina');
+            $table->float('sirina')->nullable();
+            $table->float('duzina')->nullable();
             $table->string('user');
 
 

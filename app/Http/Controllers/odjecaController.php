@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\odjeca;
 use App\Models\odjecapolja;
 use App\Models\slika;
 use Illuminate\Http\Request;
@@ -11,6 +12,23 @@ use Illuminate\Support\Facades\DB;
 
 class odjecaController extends \Illuminate\Routing\Controller
 {
+
+    public function getAllTypes(){
+        return odjeca::all();
+    }
+    public  function  getType($tip){
+
+        $svi= DB::select('select * from odjecapolja where odjeca_vrsta='.$tip);
+
+        for($i=0; $i<sizeof($svi);$i++){
+            $svi[$i]->slika = slika::where('slika_odjeca', $svi[$i]->id)->first();
+
+        }
+        return $svi;
+
+    }
+
+
 
     public function getAll() {
         $svi = odjecapolja::all();

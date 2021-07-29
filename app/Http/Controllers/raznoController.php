@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\razno;
 use App\Models\raznopolja;
 use App\Models\slika;
 use Illuminate\Http\Request;
@@ -12,6 +13,24 @@ use function Sodium\add;
 
 class raznoController extends \Illuminate\Routing\Controller
 {
+
+    public function getAllTypes(){
+        return razno::all();
+    }
+    public  function  getType($tip){
+
+        $svi= DB::select('select * from raznopolja where razno_vrsta='.$tip);
+
+        for($i=0; $i<sizeof($svi);$i++){
+            $svi[$i]->slika = slika::where('slika_razno', $svi[$i]->id)->first();
+
+        }
+        return $svi;
+
+    }
+
+
+
     public function getAll()
     {
         $svi = raznopolja::all();

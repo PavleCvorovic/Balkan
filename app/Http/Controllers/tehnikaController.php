@@ -11,6 +11,28 @@ use Illuminate\Support\Facades\DB;
 class tehnikaController extends Controller
 {
 
+
+
+
+    public function getAllTypes(){
+        return nekretnine::all();
+    }
+    public  function  getType($tip){
+
+        $svi= DB::select('select * from tehnikapolja where tehnika_vrsta='.$tip);
+
+        for($i=0; $i<sizeof($svi);$i++){
+            $svi[$i]->slika = slika::where('slika_tehnika', $svi[$i]->id)->first();
+
+        }
+        return $svi;
+
+    }
+
+
+
+
+
     public function getAll() {
         $svi = tehnikapolja::all();
         for ($i = 0; $i < sizeof($svi); $i++) {

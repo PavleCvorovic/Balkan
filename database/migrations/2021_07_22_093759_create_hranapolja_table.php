@@ -15,8 +15,8 @@ class CreateHranapoljaTable extends Migration
     {
         Schema::create('hranapolja', function (Blueprint $table) {
             $table->id();
-            $table->string('hrana_vrsta');
-            $table->foreign('hrana_vrsta')->references('tip')->on('hrana_ipice');
+            $table->bigInteger('hrana_vrsta')->unsigned();
+            $table->foreign('hrana_vrsta')->references('id')->on('hrana_ipice');
             $table->boolean('domace');
             $table->string('naziv');
             $table->string('opis');

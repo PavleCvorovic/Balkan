@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\HranaiPice1;
 use App\Models\slika;
 use App\Models\HranaiPice;
 use Illuminate\Http\Request;
@@ -11,6 +12,23 @@ use Illuminate\Support\Facades\DB;
 
 class hranaController extends \Illuminate\Routing\Controller
 {
+    public function getAllTypes(){
+        return HranaiPice1::all();
+    }
+    public  function  getType($tip){
+
+        $svi= DB::select('select * from hranapolja where hrana_vrsta='.$tip);
+
+        for($i=0; $i<sizeof($svi);$i++){
+            $svi[$i]->slika = slika::where('slika_hrana', $svi[$i]->id)->first();
+
+        }
+        return $svi;
+
+    }
+
+
+
 
     public function getAll() {
         $svi = HranaiPice::all();

@@ -15,8 +15,8 @@ class CreateRaznopoljaTable extends Migration
     {
         Schema::create('raznopolja', function (Blueprint $table) {
             $table->id();
-            $table->string('razno_vrsta');
-            $table->foreign('razno_vrsta')->references('tip')->on('razno');
+            $table->bigInteger('razno_vrsta')->unsigned();
+            $table->foreign('razno_vrsta')->references('id')->on('razno');
             $table->string('naziv');
             $table->string('opis');
             $table->string('lokacija');

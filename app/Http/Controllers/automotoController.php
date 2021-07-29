@@ -4,13 +4,31 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\automoto;
 use App\Models\automotopolja;
 use App\Models\slika;
+use App\Models\tehnikapolja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class automotoController extends \Illuminate\Routing\Controller
 {
+
+    public function getAllTypes(){
+        return automoto::all();
+    }
+public  function  getType($tip){
+
+     $svi= DB::select('select * from automotopolja where automoto_vrsta='.$tip);
+
+    for($i=0; $i<sizeof($svi);$i++){
+        $svi[$i]->slika = slika::where('slika_automoto', $svi[$i]->id)->first();
+
+    }
+return $svi;
+
+}
+
 
     public function getAll() {
         $svi= automotopolja::all();
@@ -113,8 +131,56 @@ class automotoController extends \Illuminate\Routing\Controller
         $post->save();
 
 
-        $post->save();
+
         return automotopolja::all();
     }
+
+
+    public function Filter(Request $request){
+
+        $cijena= $request->cijena;
+        $marka=$request->marka;
+        $model=$request->model;
+        $godiste=$request->godiste;
+        $kubikaza=$request->kubikaza;
+
+        $sve= automotopolja::select('automotopolja.*');
+
+
+
+
+        if ($cijena)
+
+            $sve= $sve->where('cijena',$cijena);
+
+        if ($marka)
+
+            $sve= $sve->where('marka',$marka);
+
+        if ($model)
+
+            $sve= $sve->where('model',$model);
+
+        if ($godiste)
+
+            $sve= $sve->where('godiste',$godiste);
+
+        if ($kubikaza)
+
+            $sve= $sve->where('kubikaza',$godiste);
+
+
+
+        $sve = $sve->get();
+
+        for($i=0; $i<sizeof($sve);$i++){
+            $sve[$i]->slika = slika::where('slika_automoto', $sve[$i]->id)->first();
+
+        }
+
+        return  $sve;
+    }
+
+
 
 }

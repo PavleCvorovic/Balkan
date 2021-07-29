@@ -11,6 +11,7 @@ class CreateNekretnineTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         Schema::create('nekretnine', function (Blueprint $table) {

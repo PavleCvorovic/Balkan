@@ -15,8 +15,8 @@ class CreateTehnikapoljaTable extends Migration
     {
         Schema::create('tehnikapolja', function (Blueprint $table) {
             $table->id();
-            $table->string('tehnika_vrsta');
-            $table->foreign('tehnika_vrsta')->references('tip')->on('tehnika');
+            $table->bigInteger('tehnika_vrsta')->unsigned();
+            $table->foreign('tehnika_vrsta')->references('id')->on('tehnika');
             $table->string('naziv');
             $table->string('opis');
             $table->string('stanje');

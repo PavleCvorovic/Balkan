@@ -15,8 +15,8 @@ class CreateOdjecapoljaTable extends Migration
     {
         Schema::create('odjecapolja', function (Blueprint $table) {
             $table->id();
-            $table->string('odjeca_vrsta');
-            $table->foreign('odjeca_vrsta')->references('tip')->on('odjeca');
+            $table->bigInteger('odjeca_vrsta')->unsigned();
+            $table->foreign('odjeca_vrsta')->references('id')->on('odjeca');
             $table->string('naziv');
             $table->string('opis');
             $table->string('stanje');

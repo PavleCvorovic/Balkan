@@ -15,8 +15,8 @@ class CreateNekretninepoljaTable extends Migration
     {
         Schema::create('nekretninepolja', function (Blueprint $table) {
             $table->id();
-            $table->string('nekretnine_vrsta');
-            $table->foreign('nekretnine_vrsta')->references('tip')->on('nekretnine');
+            $table->bigInteger('nekretnine_vrsta')->unsigned();
+            $table->foreign('nekretnine_vrsta')->references('id')->on('nekretnine');
             $table->string('naziv');
             $table->string('kvadratura');
             $table->string('opis');
