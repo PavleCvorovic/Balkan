@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\automoto;
 use App\Models\automotopolja;
 use App\Models\slika;
-use App\Models\tehnikapolja;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

@@ -123,3 +123,6 @@ Route::post('addTehnikaTip/{tip}', 'rootController@addTehnika');
 Route::get('delTehnikaTip/{id}', 'rootController@delTehnika');
 Route::get('getTehnikaTip','rootController@delTehnika');
 
+Route::post('register','UserController@register');
+Route::post('login','UserController@login');
+
