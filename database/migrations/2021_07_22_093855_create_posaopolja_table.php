@@ -18,13 +18,13 @@ class CreatePosaopoljaTable extends Migration
             $table->bigInteger('posao_vrsta')->unsigned();
             $table->foreign('posao_vrsta')->references('id')->on('posao');
             $table->string('naziv');
-            $table->string('opis');
-            $table->string('lokacija');
-            $table->string('plata');
-            $table->string('kontakt');
+            $table->string('opis')->nullable();
+            $table->string('lokacija')->nullable();
+            $table->integer('plata');
+            $table->string('kontakt')->nullable();
 
-            $table->float('sirina');
-            $table->float('duzina');
+            $table->float('sirina')->nullable();
+            $table->float('duzina')->nullable();
             $table->string('user');
 
             $table->timestamps();

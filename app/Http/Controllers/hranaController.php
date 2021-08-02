@@ -119,4 +119,39 @@ class hranaController extends \Illuminate\Routing\Controller
         $post->save();
         return HranaiPice::all();
     }
+    public function Filter(Request $request){
+
+
+        $id=$request->id;
+        $cijena_min= $request->cijenaMin;
+        $cijena_max= $request->cijenaMax;
+        $domace= $request->domace;
+
+
+
+        $sve= HranaiPice::select('hranapolja.*');
+
+        if ($id)
+            $sve= $sve->where('hrana_vrsta',$id);
+
+        if ($cijena_min)
+            $sve = $sve->where('cijena','>=',$cijena_min);
+
+        if ($cijena_max)
+            $sve = $sve->where('cijena','<',$cijena_max);
+
+        if ($domace)
+
+            $sve= $sve->where('domace',$domace);
+
+
+        $sve = $sve->get();
+        for($i=0; $i<sizeof($sve);$i++){
+
+            $sve[$i]->slika = slika::where('slika_hrana', $sve[$i]->id)->first();
+
+        }
+
+        return  $sve;
+    }
 }

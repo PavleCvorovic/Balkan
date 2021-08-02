@@ -66,7 +66,7 @@ $rezultat1->podaci=$rezultat;
         $produkt->cijena = $request->cijena;
         $produkt->lokacija = $request->lokacija;
         $produkt->kontakt = $request->kontakt;
-
+        $produkt->stanje = $request->stanje;
         $produkt->sirina = $request->sirina;
         $produkt->duzina = $request->duzina;
         $produkt->user = $request->user;
@@ -115,7 +115,7 @@ return raznopolja::all();
         $post->cijena = $request->cijena;
         $post->lokacija = $request->lokacija;
         $post->kontakt = $request->kontakt;
-
+        $post->stanje = $request->stanje;
         $post->sirina = $request->sirina;
         $post->duzina = $request->duzina;
         $post->user = $request->user;
@@ -123,5 +123,42 @@ return raznopolja::all();
         $post->save();
         return raznopolja::all();
     }
+
+    public function Filter(Request $request){
+
+
+        $id=$request->id;
+        $cijena_min= $request->cijenaMin;
+        $cijena_max= $request->cijenaMax;
+        $stanje= $request->stanje;
+
+
+
+        $sve= raznopolja::select('raznopolja.*');
+
+        if ($id)
+            $sve= $sve->where('razno_vrsta',$id);
+
+        if ($cijena_min)
+            $sve = $sve->where('cijena','>=',$cijena_min);
+
+        if ($cijena_max)
+            $sve = $sve->where('cijena','<',$cijena_max);
+
+        if ($stanje)
+
+            $sve= $sve->where('stanje',$stanje);
+
+
+        $sve = $sve->get();
+        for($i=0; $i<sizeof($sve);$i++){
+
+            $sve[$i]->slika = slika::where('slika_razno', $sve[$i]->id)->first();
+
+        }
+
+        return  $sve;
+    }
+
 
 }

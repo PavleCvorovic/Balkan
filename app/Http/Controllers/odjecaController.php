@@ -116,4 +116,42 @@ return odjecapolja::all();
         $post->save();
         return odjecapolja::all();
     }
+
+    public function Filter(Request $request){
+
+
+        $id=$request->id;
+        $cijena_min= $request->cijenaMin;
+        $cijena_max= $request->cijenaMax;
+        $stanje= $request->stanje;
+
+
+
+        $sve= odjecapolja::select('odjecapolja.*');
+
+        if ($id)
+            $sve= $sve->where('odjeca_vrsta',$id);
+
+        if ($cijena_min)
+            $sve = $sve->where('cijena','>=',$cijena_min);
+
+        if ($cijena_max)
+            $sve = $sve->where('cijena','<',$cijena_max);
+
+        if ($stanje)
+
+            $sve= $sve->where('stanje',$stanje);
+
+
+        $sve = $sve->get();
+        for($i=0; $i<sizeof($sve);$i++){
+
+            $sve[$i]->slika = slika::where('odjeca_razno', $sve[$i]->id)->first();
+
+        }
+
+        return  $sve;
+    }
+
+
 }

@@ -121,6 +121,53 @@ class tehnikaController extends Controller
 
         return tehnikapolja::all();
     }
+    public function Filter(Request $request){
+
+
+        $id=$request->id;
+        $cijena_min= $request->cijenaMin;
+        $cijena_max= $request->cijenaMax;
+        $stanje= $request->stanje;
+        $godiste_min=$request->godisteMin;
+        $godiste_max=$request->godisteMax;
+
+
+        $sve= tehnikapolja::select('tehnikapolja.*');
+
+        if ($id)
+            $sve= $sve->where('tehnika_vrsta',$id);
+
+        if ($cijena_min)
+            $sve = $sve->where('cijena','>=',$cijena_min);
+
+        if ($cijena_max)
+            $sve = $sve->where('cijena','<',$cijena_max);
+
+        if ($stanje)
+
+            $sve= $sve->where('stanje',$stanje);
+
+
+
+        if ($godiste_min)
+
+            $sve= $sve->where('godiste_proizvodnje','>=',$godiste_min);
+        if ($godiste_max)
+
+            $sve= $sve->where('godiste_proizvonje','<',$godiste_max);
+
+
+
+        $sve = $sve->get();
+        for($i=0; $i<sizeof($sve);$i++){
+
+            $sve[$i]->slika = slika::where('slika_tehnika', $sve[$i]->id)->first();
+
+        }
+
+        return  $sve;
+    }
+
 
 
 }

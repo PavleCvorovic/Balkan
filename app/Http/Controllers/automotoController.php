@@ -138,20 +138,27 @@ return $svi;
 
     public function Filter(Request $request){
 
-        $cijena= $request->cijena;
+
+        $id=$request->id;
+        $cijena_min= $request->cijenaMin;
+        $cijena_max= $request->cijenaMax;
         $marka=$request->marka;
         $model=$request->model;
-        $godiste=$request->godiste;
-        $kubikaza=$request->kubikaza;
+        $godiste_min=$request->godisteMin;
+        $godiste_max=$request->godisteMax;
+        $kubikaza_min=$request->kubikazaMin;
+        $kubikaza_max=$request->kubikazaMax;
 
         $sve= automotopolja::select('automotopolja.*');
 
+        if ($id)
+            $sve= $sve->where('automoto_vrsta',$id);
 
+        if ($cijena_min)
+            $sve = $sve->where('cijena','>=',$cijena_min);
 
-
-        if ($cijena)
-
-            $sve= $sve->where('cijena',$cijena);
+        if ($cijena_max)
+            $sve = $sve->where('cijena','<',$cijena_max);
 
         if ($marka)
 
@@ -161,19 +168,25 @@ return $svi;
 
             $sve= $sve->where('model',$model);
 
-        if ($godiste)
 
-            $sve= $sve->where('godiste',$godiste);
+        if ($godiste_min)
 
-        if ($kubikaza)
+            $sve= $sve->where('godina_proizvodnje','>=',$godiste_min);
+        if ($godiste_max)
 
-            $sve= $sve->where('kubikaza',$godiste);
+            $sve= $sve->where('godina_proizvodnje','<',$godiste_max);
 
+        if ($kubikaza_min)
 
+            $sve= $sve->where('kubikaza','>=',$kubikaza_min);
 
-        $sve = $sve->get();
+        if ($kubikaza_max)
 
+            $sve= $sve->where('kubikaza','<',$kubikaza_max);
+
+            $sve = $sve->get();
         for($i=0; $i<sizeof($sve);$i++){
+
             $sve[$i]->slika = slika::where('slika_automoto', $sve[$i]->id)->first();
 
         }

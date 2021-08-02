@@ -125,4 +125,40 @@ class posaoController extends \Illuminate\Routing\Controller
         return posaopolja::all();
     }
 
+    public function Filter(Request $request){
+
+
+        $id=$request->id;
+        $cijena_min= $request->cijenaMin;
+        $cijena_max= $request->cijenaMax;
+
+
+
+
+        $sve= posaopolja::select('posaopolja.*');
+
+        if ($id)
+            $sve= $sve->where('posao_vrsta',$id);
+
+        if ($cijena_min)
+            $sve = $sve->where('plata','>=',$cijena_min);
+
+        if ($cijena_max)
+            $sve = $sve->where('plata','<',$cijena_max);
+
+
+
+
+        $sve = $sve->get();
+        for($i=0; $i<sizeof($sve);$i++){
+
+            $sve[$i]->slika = slika::where('slika_posao', $sve[$i]->id)->first();
+
+        }
+
+        return  $sve;
+    }
+
+
+
 }

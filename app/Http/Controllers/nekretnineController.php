@@ -117,4 +117,46 @@ nekretninepolja::all();
 
         $post->save();
         return nekretninepolja::all();
-    }}
+    }
+    public function Filter(Request $request){
+
+
+        $id=$request->id;
+        $cijena_min= $request->cijenaMin;
+        $cijena_max= $request->cijenaMax;
+        $tip_vlasnistva= $request->tip_vlasnistva;
+        $kvadratura_min= $request->kvadraturaMin;
+        $kvadratura_max= $request->kvadraturaMax;
+
+        $sve= nekretninepolja::select('nekretninepolja.*');
+
+        if ($id)
+            $sve= $sve->where('nekretnine_vrsta',$id);
+
+        if ($cijena_min)
+            $sve = $sve->where('cijena','>=',$cijena_min);
+
+        if ($cijena_max)
+            $sve = $sve->where('cijena','<',$cijena_max);
+        if ($kvadratura_min)
+            $sve = $sve->where('kvadratura','>=',$kvadratura_min);
+
+        if ($kvadratura_max)
+            $sve = $sve->where('kvadratura','<',$kvadratura_max);
+        if ($tip_vlasnistva)
+            $sve= $sve->where('tip_vlasnistva',$tip_vlasnistva);
+
+
+        $sve = $sve->get();
+        for($i=0; $i<sizeof($sve);$i++){
+
+            $sve[$i]->slika = slika::where('slika_nekretnine', $sve[$i]->id)->first();
+
+        }
+
+        return  $sve;
+    }
+
+
+
+}
