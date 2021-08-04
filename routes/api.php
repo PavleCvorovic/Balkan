@@ -126,3 +126,4 @@ Route::get('getTehnikaTip','rootController@delTehnika');
 Route::post('register','UserController@register');
 Route::post('login','UserController@login');
 
+

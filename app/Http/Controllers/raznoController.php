@@ -69,7 +69,7 @@ $rezultat1->podaci=$rezultat;
         $produkt->stanje = $request->stanje;
         $produkt->sirina = $request->sirina;
         $produkt->duzina = $request->duzina;
-        $produkt->user = $request->user;
+        $produkt->user_id = $request->user_id;
 
         $produkt->save();
         $zadnji = $produkt->id;

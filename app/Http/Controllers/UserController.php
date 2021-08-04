@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Namshi\JOSE\JWT;
+use Tymon\JWTAuth\Contracts\Providers\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exception\JWTException;
+use Illuminate\Contracts\Auth\Factory;
 
 class UserController extends Controller
 {
@@ -60,7 +62,7 @@ $response['code']=200;
                 $response['data']=null;
                 $response['message']='Neuspjesno';
                 $response['code']=401;
-
+                return response()->json($response);
             }
 
 }
@@ -69,6 +71,7 @@ $response['code']=200;
            $response['data']=null;
            $response['message']='Ne moze kreirati token';
            $response['code']=500;
+           return response()->json($response);
        }
        $user = auth()->user();
 $data['token'] = auth()->claims([
@@ -81,4 +84,10 @@ $data['token'] = auth()->claims([
         $response['code']=200;
         return response()->json($response);
     }
+
+    public function user(){
+        return Auth::user();
+    }
+
+
 }

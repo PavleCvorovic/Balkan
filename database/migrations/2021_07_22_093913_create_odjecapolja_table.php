@@ -25,7 +25,8 @@ class CreateOdjecapoljaTable extends Migration
             $table->string('kontakt');
             $table->float('sirina')->nullable();
             $table->float('duzina')->nullable();
-            $table->string('user');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('dimenzije')->nullable();
 
             $table->timestamps();
