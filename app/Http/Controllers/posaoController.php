@@ -71,7 +71,7 @@ class posaoController extends \Illuminate\Routing\Controller
 
         $produkt->sirina = $request->sirina;
         $produkt->duzina = $request->duzina;
-        $produkt->user = $request->user;
+        $produkt->user_id = $request->user_id;
 
         $produkt->save();
         $zadnji = $produkt->id;
@@ -81,7 +81,7 @@ class posaoController extends \Illuminate\Routing\Controller
             $name = $request->file('prva_slika')->getClientOriginalName();
             $path = $request->file('prva_slika')->storeAs('public/file', $name);
             $slika = new slika();
-            $slika->slika_razno = $zadnji;
+            $slika->slika_posao = $zadnji;
             $slika->url = $name;
             $slika->save();
         } else {
@@ -115,7 +115,7 @@ class posaoController extends \Illuminate\Routing\Controller
 
             $post->sirina = $request->sirina;
             $post->duzina = $request->duzina;
-            $post->user = $request->user;
+            $post->user_id = $request->user_id;
 
             $post->save();
 

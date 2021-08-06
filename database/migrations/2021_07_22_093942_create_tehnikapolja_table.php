@@ -26,7 +26,7 @@ class CreateTehnikapoljaTable extends Migration
 
             $table->float('sirina')->nullable();
             $table->float('duzina')->nullable();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('karakteristike')->nullable();
             $table->integer('godina_proizvodnje')->nullable();

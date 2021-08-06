@@ -118,7 +118,7 @@ return raznopolja::all();
         $post->stanje = $request->stanje;
         $post->sirina = $request->sirina;
         $post->duzina = $request->duzina;
-        $post->user = $request->user;
+        $post->user_id = $request->user_id;
 
         $post->save();
         return raznopolja::all();
