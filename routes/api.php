@@ -126,4 +126,6 @@ Route::get('getTehnikaTip','rootController@delTehnika');
 Route::post('register','UserController@register');
 Route::post('login','UserController@login');
 
+Route::get('postByUser/{id}', 'UserController@getPostbyUser');
 
+Route::get('a/{param}', 'UserController@a');

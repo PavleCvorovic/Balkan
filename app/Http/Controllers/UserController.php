@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\slika;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Namshi\JOSE\JWT;
+use phpDocumentor\Reflection\Types\String_;
 use Tymon\JWTAuth\Contracts\Providers\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exception\JWTException;
 use Illuminate\Contracts\Auth\Factory;
+use function Symfony\Component\String\s;
 
 class UserController extends Controller
 {
@@ -89,5 +93,66 @@ $data['token'] = auth()->claims([
         return Auth::user();
     }
 
+    public function getPostbyUser($id)
+    {
 
-}
+        $svi=[];
+
+        $teh = DB::select('select * from tehnikapolja where user_id=' . $id);
+        $aut = DB::select('select * from automotopolja where user_id=' . $id);
+        $hrana = DB::select('select * from hranapolja where user_id=' . $id);
+        $nek = DB::select('select * from nekretninepolja where user_id=' . $id);
+        $odj = DB::select('select * from odjecapolja where user_id=' . $id);
+        $pos = DB::select('select * from posaopolja where user_id=' . $id);
+        $raz = DB::select('select * from raznopolja where user_id=' . $id);
+        if ($teh){
+            for ($i = 0; $i < sizeof($teh); $i++) {
+                $teh[$i]->slika = slika::where('slika_tehnika', $teh[$i]->id)->first();
+            }
+            array_push($svi, $teh);}
+        if ($aut){
+            for ($i = 0; $i < sizeof($aut); $i++) {
+                $aut[$i]->slika = slika::where('slika_automoto', $aut[$i]->id)->first();
+            }
+            array_push($svi, $aut);}
+        if ($hrana){
+            for ($i = 0; $i < sizeof($hrana); $i++) {
+                $hrana[$i]->slika = slika::where('slika_hrana', $hrana[$i]->id)->first();
+            }
+            array_push($svi, $hrana);}
+        if ($nek){
+            for ($i = 0; $i < sizeof($nek); $i++) {
+                $nek[$i]->slika = slika::where('slika_nekretnine', $nek[$i]->id)->first();
+            }
+            array_push($svi, $nek);}
+        if ($odj){
+            for ($i = 0; $i < sizeof($odj); $i++) {
+                $odj[$i]->slika = slika::where('slika_odjeca', $odj[$i]->id)->first();
+            }
+            array_push($svi, $odj);}
+        if ($pos){
+            for ($i = 0; $i < sizeof($pos); $i++) {
+                $pos[$i]->slika = slika::where('slika_posao', $pos[$i]->id)->first();
+            }
+            array_push($svi, $pos);}
+        if ($raz) {
+            for ($i = 0; $i < sizeof($raz); $i++) {
+                $raz[$i]->slika = slika::where('slika_razno', $raz[$i]->id)->first();
+            }
+            array_push($svi, $raz);
+        }
+
+    }
+
+    public function DelAsUser($tabela){
+
+        $sql = <<<SQL
+                          select * from $tabela
+
+SQL;
+        $g = \DB::select(\DB::raw($sql));
+        return $g;
+
+
+
+}}
