@@ -18,12 +18,12 @@ class CreateTehnikapoljaTable extends Migration
             $table->bigInteger('tehnika_vrsta')->unsigned();
             $table->foreign('tehnika_vrsta')->references('id')->on('tehnika');
             $table->string('naziv');
+            $table->float('cijena');
+            $table->string('kontakt');
+            $table->string('index');
             $table->string('opis')->nullable();
             $table->string('stanje')->nullable();
             $table->string('lokacija')->nullable();
-            $table->float('cijena');
-            $table->string('kontakt');
-
             $table->float('sirina')->nullable();
             $table->float('duzina')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();

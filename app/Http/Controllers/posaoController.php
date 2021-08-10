@@ -72,7 +72,7 @@ class posaoController extends \Illuminate\Routing\Controller
         $produkt->sirina = $request->sirina;
         $produkt->duzina = $request->duzina;
         $produkt->user_id = $request->user_id;
-
+        $produkt->index='posaopolja';
         $produkt->save();
         $zadnji = $produkt->id;
 

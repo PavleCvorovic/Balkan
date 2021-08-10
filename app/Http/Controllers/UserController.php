@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\automotopolja;
 use App\Models\slika;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -141,18 +142,90 @@ $data['token'] = auth()->claims([
             }
             array_push($svi, $raz);
         }
-
+return $svi;
     }
 
-    public function DelAsUser($tabela){
+    public function DelAsUser(Request $request)
+    {
+        $tabela = $request->tabela;
+        $tabela_slika = substr_replace($tabela, "", -5);
+       $tabela_slika= 'slika_'.$tabela_slika;
+        $sql1 = <<<SQL
+                          delete  from slika
+                          where $tabela_slika = $request->id
+SQL;
+        \DB::select(\DB::raw($sql1));
 
         $sql = <<<SQL
-                          select * from $tabela
-
+                          delete  from $tabela
+                          where id = $request->id
 SQL;
-        $g = \DB::select(\DB::raw($sql));
-        return $g;
+        \DB::select(\DB::raw($sql));
+  return $this->getPostbyUser($request->user_id);
 
 
 
-}}
+}
+public function ModAsUser(Request $request){
+        if($request->tabela == "automotopolja"){
+            $a = new automotoController();
+        return   $a->modPostbyId($request);
+        }
+    if($request->tabela == "hranapolja"){
+        $a = new hranaController();
+        return   $a->modPostbyId($request);
+    }
+    if($request->tabela == "nekretninepolja"){
+        $a = new nekretnineController();
+        return   $a->modPostbyId($request);
+    }
+    if($request->tabela == "odjecapolja"){
+        $a = new odjecaController();
+        return   $a->modPostbyId($request);
+    }
+    if($request->tabela == "posaopolja"){
+        $a = new posaoController();
+        return   $a->modPostbyId($request);
+    }
+    if($request->tabela == "raznopolja"){
+        $a = new raznoController();
+        return   $a->modPostbyId($request);
+    }
+    if($request->tabela == "tehnikapolja"){
+        $a = new tehnikaController();
+        return   $a->modPostbyId($request);
+    }
+}
+    public function AddAsUser(Request $request){
+        if($request->tabela == "automotopolja"){
+            $a = new automotoController();
+            return   $a->addPost($request);
+        }
+        if($request->tabela == "hranapolja"){
+            $a = new hranaController();
+            return   $a->addPost($request);
+        }
+        if($request->tabela == "nekretninepolja"){
+            $a = new nekretnineController();
+            return   $a->addPost($request);
+        }
+        if($request->tabela == "odjecapolja"){
+            $a = new odjecaController();
+            return   $a->addPost($request);
+        }
+        if($request->tabela == "posaopolja"){
+            $a = new posaoController();
+            return   $a->addPost($request);
+        }
+        if($request->tabela == "raznopolja"){
+            $a = new raznoController();
+            return   $a->addPost($request);
+        }
+        if($request->tabela == "tehnikapolja"){
+            $a = new tehnikaController();
+            return   $a->addPost($request);
+        }
+    }
+
+
+}

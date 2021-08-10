@@ -19,16 +19,17 @@ class CreateHranapoljaTable extends Migration
             $table->foreign('hrana_vrsta')->references('id')->on('hrana_ipice');
             $table->string('domace')->nullable();
             $table->string('naziv');
+            $table->float('cijena');
+            $table->string('kontakt');
+            $table->string('index');
             $table->string('opis')->nullable();
             $table->float('kolicina')->nullable();
             $table->string('lokacija')->nullable();
-            $table->float('cijena');
-            $table->string('kontakt');
-
             $table->float('sirina')->nullable();
             $table->float('duzina')->nullable();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

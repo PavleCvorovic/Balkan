@@ -18,14 +18,16 @@ class CreateRaznopoljaTable extends Migration
             $table->bigInteger('razno_vrsta')->unsigned();
             $table->foreign('razno_vrsta')->references('id')->on('razno');
             $table->string('naziv');
+            $table->float('cijena');
+            $table->string('kontakt');
+            $table->string('index');
             $table->string('opis')->nullable();
             $table->string('lokacija')->nullable();
-            $table->float('cijena');
-            $table->string('kontakt')->nullable();
+
             $table->string('stanje')->nullable();
             $table->float('sirina')->nullable();
             $table->float('duzina')->nullable();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

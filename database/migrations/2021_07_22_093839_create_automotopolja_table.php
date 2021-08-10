@@ -20,24 +20,22 @@ class CreateAutomotopoljaTable extends Migration
             $table->string('naziv');
             $table->string('marka');
             $table->string('model');
+            $table->integer('cijena');
+            $table->string('kontakt');
+            $table->string('index');
+            $table->string('stanje')->nullable();
             $table->integer('godina_proizvodnje')->nullable();
             $table->integer('kilometraza')->nullable();
             $table->integer('kubikaza')->nullable();
             $table->string('boja')->nullable();
             $table->boolean('registrovan')->nullable();
             $table->string('datum_isteka')->nullable();
-            $table->string('opis');
-            $table->string('stanje');
+            $table->string('opis')->nullable();
             $table->string('lokacija')->nullable();
-            $table->integer('cijena');
-            $table->string('kontakt');
-
             $table->float('sirina')->nullable();
             $table->float('duzina')->nullable();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-
-
             $table->timestamps();
         });
     }

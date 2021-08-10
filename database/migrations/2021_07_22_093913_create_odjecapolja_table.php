@@ -18,14 +18,15 @@ class CreateOdjecapoljaTable extends Migration
             $table->bigInteger('odjeca_vrsta')->unsigned();
             $table->foreign('odjeca_vrsta')->references('id')->on('odjeca');
             $table->string('naziv');
+            $table->float('cijena');
+            $table->string('kontakt');
+            $table->string('index');
             $table->string('opis')->nullable();
             $table->string('stanje')->nullable();
             $table->string('lokacija')->nullable();
-            $table->float('cijena');
-            $table->string('kontakt');
             $table->float('sirina')->nullable();
             $table->float('duzina')->nullable();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('dimenzije')->nullable();
 

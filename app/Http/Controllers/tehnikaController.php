@@ -72,6 +72,7 @@ class tehnikaController extends Controller
         $produkt->user_id = $request->user_id;
         $produkt->karakteristike = $request->karakteristike;
         $produkt->godina_proizvodnje = $request->godina_proizvodnje;
+        $produkt->index='tehnikapolja';
         $produkt->save();
         $zadnji = $produkt->id;
 
