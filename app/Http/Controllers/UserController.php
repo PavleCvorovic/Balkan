@@ -196,6 +196,39 @@ public function ModAsUser(Request $request){
         return   $a->modPostbyId($request);
     }
 }
+    public function GetPosts(Request $request){
+        if($request->tabela == "automotopolja"){
+            $a = new automotoController();
+            return   $a->getType($request->tip);
+        }
+        if($request->tabela == "hranapolja"){
+            $a = new hranaController();
+            return   $a->getType($request->tip);
+        }
+        if($request->tabela == "nekretninepolja"){
+            $a = new nekretnineController();
+            return   $a->getType($request->tip);
+        }
+        if($request->tabela == "odjecapolja"){
+            $a = new odjecaController();
+            return   $a->getType($request->tip);
+        }
+        if($request->tabela == "posaopolja"){
+            $a = new posaoController();
+            return   $a->getType($request->tip);
+        }
+        if($request->tabela == "raznopolja"){
+            $a = new raznoController();
+            return   $a->getType($request->tip);
+        }
+        if($request->tabela == "tehnikapolja"){
+            $a = new tehnikaController();
+            return   $a->getType($request->tip);
+        }
+    }
+
+
+
     public function AddAsUser(Request $request){
         if($request->tabela == "automotopolja"){
             $a = new automotoController();
@@ -224,6 +257,36 @@ public function ModAsUser(Request $request){
         if($request->tabela == "tehnikapolja"){
             $a = new tehnikaController();
             return   $a->addPost($request);
+        }
+    }
+    public function Filter(Request $request){
+        if($request->tabela == "automotopolja"){
+            $a = new automotoController();
+            return   $a->Filter($request);
+        }
+        if($request->tabela == "hranapolja"){
+            $a = new hranaController();
+            return   $a->Filter($request);
+        }
+        if($request->tabela == "nekretninepolja"){
+            $a = new nekretnineController();
+            return   $a->Filter($request);
+        }
+        if($request->tabela == "odjecapolja"){
+            $a = new odjecaController();
+            return   $a->Filter($request);
+        }
+        if($request->tabela == "posaopolja"){
+            $a = new posaoController();
+            return   $a->Filter($request);
+        }
+        if($request->tabela == "raznopolja"){
+            $a = new raznoController();
+            return   $a->Filter($request);
+        }
+        if($request->tabela == "tehnikapolja"){
+            $a = new tehnikaController();
+            return   $a->Filter($request);
         }
     }
 

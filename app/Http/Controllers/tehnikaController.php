@@ -22,7 +22,7 @@ class tehnikaController extends Controller
         $svi= DB::select('select * from tehnikapolja where tehnika_vrsta='.$tip);
 
         for($i=0; $i<sizeof($svi);$i++){
-            $svi[$i]->slika = slika::where('slika_tehnika', $svi[$i]->id)->first();
+            $svi[$i]->slika = slika::where('slika_tehnika', $svi[$i]->id)->get();
 
         }
         return $svi;

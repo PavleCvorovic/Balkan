@@ -22,7 +22,7 @@ class raznoController extends \Illuminate\Routing\Controller
         $svi= DB::select('select * from raznopolja where razno_vrsta='.$tip);
 
         for($i=0; $i<sizeof($svi);$i++){
-            $svi[$i]->slika = slika::where('slika_razno', $svi[$i]->id)->first();
+            $svi[$i]->slika = slika::where('slika_razno', $svi[$i]->id)->get();
 
         }
         return $svi;

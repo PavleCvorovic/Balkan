@@ -10,6 +10,7 @@ use App\Models\nekretnine;
 use App\Models\odjeca;
 use App\Models\posao;
 use App\Models\razno;
+use App\Models\tehnika;
 use Illuminate\Support\Facades\DB;
 
 class RootController extends \Illuminate\Routing\Controller

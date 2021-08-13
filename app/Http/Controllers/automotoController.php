@@ -22,7 +22,7 @@ public  function  getType($tip){
      $svi= DB::select('select * from automotopolja where automoto_vrsta='.$tip);
 
     for($i=0; $i<sizeof($svi);$i++){
-        $svi[$i]->slika = slika::where('slika_automoto', $svi[$i]->id)->first();
+        $svi[$i]->slika = slika::where('slika_automoto', $svi[$i]->id)->get();
 
     }
 return $svi;
@@ -36,6 +36,7 @@ return $svi;
             $svi[$i]->slika = slika::where('slika_automoto', $svi[$i]->id)->first();
 
         }
+        return $svi;
 
     }
 

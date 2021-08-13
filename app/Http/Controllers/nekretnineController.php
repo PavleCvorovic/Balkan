@@ -20,7 +20,7 @@ class nekretnineController extends Controller
         $svi= DB::select('select * from nekretninepolja where nekretnine_vrsta='.$tip);
 
         for($i=0; $i<sizeof($svi);$i++){
-            $svi[$i]->slika = slika::where('slika_nekretnine', $svi[$i]->id)->first();
+            $svi[$i]->slika = slika::where('slika_nekretnine', $svi[$i]->id)->get();
 
         }
         return $svi;

@@ -21,7 +21,7 @@ class odjecaController extends \Illuminate\Routing\Controller
         $svi= DB::select('select * from odjecapolja where odjeca_vrsta='.$tip);
 
         for($i=0; $i<sizeof($svi);$i++){
-            $svi[$i]->slika = slika::where('slika_odjeca', $svi[$i]->id)->first();
+            $svi[$i]->slika = slika::where('slika_odjeca', $svi[$i]->id)->get();
 
         }
         return $svi;
