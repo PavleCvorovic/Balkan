@@ -124,3 +124,4 @@ Route::post('addAsUser', 'UserController@AddAsUser');
 
 Route::post('filter', 'UserController@Filter');
 Route::post('getPostsAll', 'UserController@GetPosts');
+Route::get('adminGet', 'UserController@deleteAdmin');

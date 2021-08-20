@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\automotopolja;
+use App\Models\razno;
 use App\Models\slika;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -42,7 +43,8 @@ if ($user){
 
    'name' =>$request->name,
          'email' =>$request->email,
-         'password' =>bcrypt($request->password)
+         'password' =>bcrypt($request->password),
+         'role'=>1
      ]
 
  );
@@ -287,6 +289,17 @@ public function ModAsUser(Request $request){
         if($request->tabela == "tehnikapolja"){
             $a = new tehnikaController();
             return   $a->Filter($request);
+        }
+    }
+
+    public function deleteAdmin()
+    {
+        if(Auth::user()->hasRole('admin'))
+        {
+           return razno::all();
+        }else
+        {
+            return 23;
         }
     }
 
