@@ -84,10 +84,14 @@ return $svi;
 
         if($request->hasFile('prva_slika')){
             $name = $request->file('prva_slika')->getClientOriginalName();
-            $path = $request->file('prva_slika')->storeAs('public/file',$name);
+            $filenameonly = pathinfo($name,PATHINFO_FILENAME);
+            $extension = $request->file('prva_slika')->getClientOriginalExtension();
+            $compPic =str_replace(' ','_',$filenameonly).'_'.rand() .'_'.time(). '.'.
+                $extension;
+            $path = $request->file('prva_slika')->storeAs('public/file',$compPic);
             $slika=new slika();
             $slika->slika_automoto=$zadnji;
-            $slika->url=$name;
+            $slika->url=$compPic;
             $slika->save();
         }
 
