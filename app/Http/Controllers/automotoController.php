@@ -98,13 +98,15 @@ return $svi;
 
         if ($request->hasfile('slike')) {
             foreach ($request->file('slike') as $key => $file) {
-                $path = $file->store('public/file');
                 $name = $file->getClientOriginalName();
                 $filenameonly = pathinfo($name,PATHINFO_FILENAME);
                 $extension = $request->file('slike')->getClientOriginalExtension();
                 $compPic =str_replace(' ','_',$filenameonly).'_'.rand() .'_'.time(). '.'.
                     $extension;
                 $path = $request->file('slike')->storeAs('public/file',$compPic);
+
+
+
                 $slika=new slika();
                 $slika->slika_automoto=$zadnji;
                 $slika->url=$compPic;
