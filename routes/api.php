@@ -122,6 +122,7 @@ Route::post('modAsUser', 'UserController@ModAsUser');
 //Saljes parametre ,naziv tabele i id vrste tabele
 Route::post('addAsUser', 'UserController@AddAsUser');
 
+Route::post('getAllId', 'UserController@GetId');
 Route::post('filter', 'UserController@Filter');
 Route::post('getPostsAll', 'UserController@GetPosts');
 Route::get('adminGet', 'UserController@deleteAdmin');

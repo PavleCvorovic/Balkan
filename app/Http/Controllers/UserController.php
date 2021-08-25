@@ -199,35 +199,39 @@ public function ModAsUser(Request $request){
     }
 }
     public function GetPosts(Request $request){
-        if($request->tabela == "automotopolja"){
-            $a = new automotoController();
-            return   $a->getType($request->tip);
-        }
-        if($request->tabela == "hranapolja"){
-            $a = new hranaController();
-            return   $a->getType($request->tip);
-        }
-        if($request->tabela == "nekretninepolja"){
-            $a = new nekretnineController();
-            return   $a->getType($request->tip);
-        }
-        if($request->tabela == "odjecapolja"){
-            $a = new odjecaController();
-            return   $a->getType($request->tip);
-        }
-        if($request->tabela == "posaopolja"){
-            $a = new posaoController();
-            return   $a->getType($request->tip);
-        }
-        if($request->tabela == "raznopolja"){
-            $a = new raznoController();
-            return   $a->getType($request->tip);
-        }
-        if($request->tabela == "tehnikapolja"){
-            $a = new tehnikaController();
-            return   $a->getType($request->tip);
-        }
-    }
+
+        switch($request->tabela) {
+            case('automotopolja'):
+                $a = new automotoController();
+                return   $a->getType($request->tip);
+            case('hranapolja'):
+                $a = new hranaController();
+                return   $a->getType($request->tip);
+            case('nekretninepolja'):
+                $a = new nekretnineController();
+                return   $a->getType($request->tip);
+            case('odjecapolja'):
+                $a = new odjecaController();
+                return   $a->getType($request->tip);
+            case('posaopolja'):
+                $a = new posaoController();
+                return   $a->getType($request->tip);
+            case('raznopolja'):
+                $a = new raznoController();
+                return   $a->getType($request->tip);
+            case('tehnikapolja'):
+                $a = new tehnikaController();
+                return   $a->getType($request->tip);
+
+        }}
+
+
+
+
+
+
+
+
 
 
 
@@ -289,6 +293,43 @@ public function ModAsUser(Request $request){
         if($request->tabela == "tehnikapolja"){
             $a = new tehnikaController();
             return   $a->Filter($request);
+        }
+    }
+    public function GetId(Request $request){
+        if($request->tabela == "automotopolja"){
+            $a = new automotoController();
+            $b= $request->id;
+            return   $a->getId($b);
+        }
+        if($request->tabela == "hranapolja"){
+            $a = new hranaController();
+            $b= $request->id;
+            return   $a->getId($b);
+        }
+        if($request->tabela == "nekretninepolja"){
+            $a = new nekretnineController();
+            $b= $request->id;
+            return   $a->getId($b);
+        }
+        if($request->tabela == "odjecapolja"){
+            $a = new odjecaController();
+            $b= $request->id;
+            return   $a->getId($b);
+        }
+        if($request->tabela == "posaopolja"){
+            $a = new posaoController();
+            $b= $request->id;
+            return   $a->getId($b);
+        }
+        if($request->tabela == "raznopolja"){
+            $a = new raznoController();
+            $b= $request->id;
+            return   $a->getId($b);
+        }
+        if($request->tabela == "tehnikapolja"){
+            $a = new tehnikaController();
+            $b= $request->id;
+            return   $a->getId($b);
         }
     }
 
