@@ -152,7 +152,7 @@ class posaoController extends \Illuminate\Routing\Controller
         $sve = $sve->get();
         for($i=0; $i<sizeof($sve);$i++){
 
-            $sve[$i]->slika = slika::where('slika_posao', $sve[$i]->id)->first();
+            $sve[$i]->slika = slika::where('slika_posao', $sve[$i]->id)->get();
 
         }
 
