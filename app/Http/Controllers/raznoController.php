@@ -77,15 +77,11 @@ $rezultat1->podaci=$rezultat;
 
         if($request->hasFile('prva_slika')){
             $name = $request->file('prva_slika')->getClientOriginalName();
-            $filenameonly = pathinfo($name,PATHINFO_FILENAME);
-            $extension = $request->file('prva_slika')->getClientOriginalExtension();
-            $compPic =str_replace(' ','_',$filenameonly).'_'.rand() .'_'.time(). '.'.
-                $extension;
-            $path = $request->file('prva_slika')->storeAs('public/file',$compPic);
+            $path = $request->file('prva_slika')->storeAs('public/file',$name);
 
             $slika=new slika();
             $slika->slika_razno=$zadnji;
-            $slika->url=$compPic;
+            $slika->url=$name;
             $slika->save();
         }
         else{ echo 'nema';}
@@ -95,14 +91,11 @@ $rezultat1->podaci=$rezultat;
         if ($request->hasfile('slike')) {
             foreach ($request->file('slike') as $key => $file) {
                 $name = $file->getClientOriginalName();
-                $filenameonly = pathinfo($name,PATHINFO_FILENAME);
-
-                $compPic =str_replace(' ','_',$filenameonly).'_'.rand() .'_'.time(). '.'.'jpg';
-                $path = $file->storeAs('public/file',$compPic);
+                $path = $file->storeAs('public/file',$name);
 
                 $slika=new slika();
                 $slika->slika_razno=$zadnji;
-                $slika->url=$compPic;
+                $slika->url=$name;
                 $slika->save();
 
             }
