@@ -79,10 +79,14 @@ class posaoController extends \Illuminate\Routing\Controller
 
         if ($request->hasFile('prva_slika')) {
             $name = $request->file('prva_slika')->getClientOriginalName();
-            $path = $request->file('prva_slika')->storeAs('public/file', $name);
+            $filenameonly = pathinfo($name,PATHINFO_FILENAME);
+            $extension = $request->file('prva_slika')->getClientOriginalExtension();
+            $compPic =str_replace(' ','_',$filenameonly).'_'.rand() .'_'.time(). '.'.
+                $extension;
+            $path = $request->file('prva_slika')->storeAs('public/file',$compPic);
             $slika = new slika();
             $slika->slika_posao = $zadnji;
-            $slika->url = $name;
+            $slika->url = $compPic;
             $slika->save();
         } else {
             echo 'nema';
@@ -90,11 +94,14 @@ class posaoController extends \Illuminate\Routing\Controller
 
         if ($request->hasfile('slike')) {
             foreach ($request->file('slike') as $key => $file) {
-                $path = $file->store('public/file');
                 $name = $file->getClientOriginalName();
+                $filenameonly = pathinfo($name,PATHINFO_FILENAME);
+
+                $compPic =str_replace(' ','_',$filenameonly).'_'.rand() .'_'.time(). '.'.'jpg';
+                $path = $file->storeAs('public/file',$compPic);
                 $slika = new slika();
                 $slika->slika_posao = $zadnji;
-                $slika->url = $name;
+                $slika->url = $compPic;
                 $slika->save();
 
             }
