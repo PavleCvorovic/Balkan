@@ -153,7 +153,7 @@ return odjecapolja::all();
         $sve = $sve->get();
         for($i=0; $i<sizeof($sve);$i++){
 
-            $sve[$i]->slika = slika::where('odjeca_razno', $sve[$i]->id)->get();
+            $sve[$i]->slika = slika::where('odjeca_razno', $sve[$i]->id)->first();
 
         }
 
