@@ -100,7 +100,7 @@ return $svi;
             foreach ($request->file('slike') as $key => $file) {
                 $name = $file->getClientOriginalName();
                 $filenameonly = pathinfo($name,PATHINFO_FILENAME);
-//                $extension = $request->file('slike')->getClientOriginalExtension();
+
                 $compPic =str_replace(' ','_',$filenameonly).'_'.rand() .'_'.time(). '.'.'jpg';
                 $path = $file->storeAs('public/file',$compPic);
 
