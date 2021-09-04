@@ -160,7 +160,7 @@ return raznopolja::all();
         $sve = $sve->get();
         for($i=0; $i<sizeof($sve);$i++){
 
-            $sve[$i]->slika = slika::where('slika_razno', $sve[$i]->id)->first();
+            $sve[$i]->slika = slika::where('slika_razno', $sve[$i]->id)->get();
 
         }
 
