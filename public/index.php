@@ -51,6 +51,5 @@ $kernel = $app->make(Kernel::class);
 $response = tap($kernel->handle(
     $request = Request::capture()
 ))->send();
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $kernel->terminate($request, $response);
