@@ -44,7 +44,7 @@ if ($user){
    'name' =>$request->name,
          'email' =>$request->email,
          'password' =>bcrypt($request->password),
-         'role'=>1
+         'role'=>$request->role
      ]
 
  );
