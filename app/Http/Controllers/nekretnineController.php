@@ -39,7 +39,7 @@ class nekretnineController extends Controller
 }
 
     public  function getId($id){
-    return nekretninepolja::find($id);
+  $rezultat1= nekretninepolja::find($id);
         $rezultat=  DB::select('select url from slika where slika_nekretnine='.$id);
         $rezultat1->podaci=$rezultat;
         return $rezultat1;

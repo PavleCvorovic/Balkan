@@ -42,7 +42,7 @@ class tehnikaController extends Controller
     }
 
     public  function getId($id){
-        return tehnikapolja::find($id);
+        $rezultat1= tehnikapolja::find($id);
         $rezultat=  DB::select('select url from slika where slika_tehnika='.$id);
         $rezultat1->podaci=$rezultat;
         return $rezultat1;

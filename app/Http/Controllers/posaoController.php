@@ -43,7 +43,7 @@ class posaoController extends \Illuminate\Routing\Controller
     }
 
     public  function getId($id){
-        return posaopolja::find($id);
+        $rezultat1= posaopolja::find($id);
         $rezultat=  DB::select('select url from slika where slika_posao='.$id);
         $rezultat1->podaci=$rezultat;
         return $rezultat1;

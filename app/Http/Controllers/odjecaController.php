@@ -39,7 +39,7 @@ class odjecaController extends \Illuminate\Routing\Controller
     }
 
     public  function getId($id){
-        return odjecapolja::find($id);
+        $rezultat1=odjecapolja::find($id);
         $rezultat=  DB::select('select url from slika where slika_odjeca='.$id);
         $rezultat1->podaci=$rezultat;
         return $rezultat1;
