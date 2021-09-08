@@ -89,6 +89,7 @@ $data['token'] = auth()->claims([
         $response['data']=$data;
         $response['message']='Uspjesno ste se ulogovali';
         $response['code']=200;
+        $response['user']=$user;
         return response()->json($response);
     }
 
