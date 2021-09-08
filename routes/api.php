@@ -129,3 +129,4 @@ Route::post('getAllId', 'UserController@GetId');
 Route::post('filter', 'UserController@Filter');
 Route::post('getPostsAll', 'UserController@GetPosts');
 Route::get('adminGet', 'UserController@deleteAdmin');
+Route::get('getAll', 'UserController@getAll');

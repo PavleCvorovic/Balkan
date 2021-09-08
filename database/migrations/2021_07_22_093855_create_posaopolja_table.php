@@ -23,7 +23,7 @@ class CreatePosaopoljaTable extends Migration
             $table->string('index');
             $table->string('opis')->nullable();
             $table->string('lokacija')->nullable();
-
+            $table->boolean('placen')->nullable();
             $table->float('sirina')->nullable();
             $table->float('duzina')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();

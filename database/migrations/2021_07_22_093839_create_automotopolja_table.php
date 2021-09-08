@@ -34,6 +34,7 @@ class CreateAutomotopoljaTable extends Migration
             $table->string('lokacija')->nullable();
             $table->float('sirina')->nullable();
             $table->float('duzina')->nullable();
+            $table->boolean('placen')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

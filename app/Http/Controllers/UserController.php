@@ -111,37 +111,37 @@ $data['token'] = auth()->claims([
         $raz = DB::select('select * from raznopolja where user_id=' . $id);
         if ($teh){
             for ($i = 0; $i < sizeof($teh); $i++) {
-                $teh[$i]->slika = slika::where('slika_tehnika', $teh[$i]->id)->first();
+                $teh[$i]->slika = slika::where('slika_tehnika', $teh[$i]->id)->get();
             }
             array_push($svi, $teh);}
         if ($aut){
             for ($i = 0; $i < sizeof($aut); $i++) {
-                $aut[$i]->slika = slika::where('slika_automoto', $aut[$i]->id)->first();
+                $aut[$i]->slika = slika::where('slika_automoto', $aut[$i]->id)->get();
             }
             array_push($svi, $aut);}
         if ($hrana){
             for ($i = 0; $i < sizeof($hrana); $i++) {
-                $hrana[$i]->slika = slika::where('slika_hrana', $hrana[$i]->id)->first();
+                $hrana[$i]->slika = slika::where('slika_hrana', $hrana[$i]->id)->get();
             }
             array_push($svi, $hrana);}
         if ($nek){
             for ($i = 0; $i < sizeof($nek); $i++) {
-                $nek[$i]->slika = slika::where('slika_nekretnine', $nek[$i]->id)->first();
+                $nek[$i]->slika = slika::where('slika_nekretnine', $nek[$i]->id)->get();
             }
             array_push($svi, $nek);}
         if ($odj){
             for ($i = 0; $i < sizeof($odj); $i++) {
-                $odj[$i]->slika = slika::where('slika_odjeca', $odj[$i]->id)->first();
+                $odj[$i]->slika = slika::where('slika_odjeca', $odj[$i]->id)->get();
             }
             array_push($svi, $odj);}
         if ($pos){
             for ($i = 0; $i < sizeof($pos); $i++) {
-                $pos[$i]->slika = slika::where('slika_posao', $pos[$i]->id)->first();
+                $pos[$i]->slika = slika::where('slika_posao', $pos[$i]->id)->get();
             }
             array_push($svi, $pos);}
         if ($raz) {
             for ($i = 0; $i < sizeof($raz); $i++) {
-                $raz[$i]->slika = slika::where('slika_razno', $raz[$i]->id)->first();
+                $raz[$i]->slika = slika::where('slika_razno', $raz[$i]->id)->get();
             }
             array_push($svi, $raz);
         }
@@ -229,6 +229,55 @@ public function ModAsUser(Request $request){
 
 
 
+public function getAll(){
+    $svi=[];
+
+    $teh = DB::select('select * from tehnikapolja ' );
+    $aut = DB::select('select * from automotopolja ' );
+    $hrana = DB::select('select * from hranapolja ' );
+    $nek = DB::select('select * from nekretninepolja ' );
+    $odj = DB::select('select * from odjecapolja ' );
+    $pos = DB::select('select * from posaopolja ' );
+    $raz = DB::select('select * from raznopolja ' );
+    if ($teh){
+        for ($i = 0; $i < sizeof($teh); $i++) {
+            $teh[$i]->slika = slika::where('slika_tehnika', $teh[$i]->id)->get();
+        }
+        array_push($svi, $teh);}
+    if ($aut){
+        for ($i = 0; $i < sizeof($aut); $i++) {
+            $aut[$i]->slika = slika::where('slika_automoto', $aut[$i]->id)->get();
+        }
+        array_push($svi, $aut);}
+    if ($hrana){
+        for ($i = 0; $i < sizeof($hrana); $i++) {
+            $hrana[$i]->slika = slika::where('slika_hrana', $hrana[$i]->id)->get();
+        }
+        array_push($svi, $hrana);}
+    if ($nek){
+        for ($i = 0; $i < sizeof($nek); $i++) {
+            $nek[$i]->slika = slika::where('slika_nekretnine', $nek[$i]->id)->get();
+        }
+        array_push($svi, $nek);}
+    if ($odj){
+        for ($i = 0; $i < sizeof($odj); $i++) {
+            $odj[$i]->slika = slika::where('slika_odjeca', $odj[$i]->id)->get();
+        }
+        array_push($svi, $odj);}
+    if ($pos){
+        for ($i = 0; $i < sizeof($pos); $i++) {
+            $pos[$i]->slika = slika::where('slika_posao', $pos[$i]->id)->get();
+        }
+        array_push($svi, $pos);}
+    if ($raz) {
+        for ($i = 0; $i < sizeof($raz); $i++) {
+            $raz[$i]->slika = slika::where('slika_razno', $raz[$i]->id)->get();
+        }
+        array_push($svi, $raz);
+    }
+   shuffle($svi);
+    return $svi;
+}
 
 
 

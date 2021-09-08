@@ -23,7 +23,7 @@ class CreateRaznopoljaTable extends Migration
             $table->string('index');
             $table->string('opis')->nullable();
             $table->string('lokacija')->nullable();
-
+            $table->boolean('placen')->nullable();
             $table->string('stanje')->nullable();
             $table->float('sirina')->nullable();
             $table->float('duzina')->nullable();
