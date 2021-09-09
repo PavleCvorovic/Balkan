@@ -230,15 +230,17 @@ public function ModAsUser(Request $request){
 
 
 public function getAll(){
-    $svi=[];
 
-    $teh = DB::select('select * from tehnikapolja ' );
-    $aut = DB::select('select * from automotopolja ' );
-    $hrana = DB::select('select * from hranapolja ' );
-    $nek = DB::select('select * from nekretninepolja ' );
-    $odj = DB::select('select * from odjecapolja ' );
-    $pos = DB::select('select * from posaopolja ' );
-    $raz = DB::select('select * from raznopolja ' );
+
+    $svi = array();
+
+    $teh = DB::select('select * from tehnikapolja  where placen=true' );
+    $aut = DB::select('select * from automotopolja  where placen=true' );
+    $hrana = DB::select('select * from hranapolja  where placen=true' );
+    $nek = DB::select('select * from nekretninepolja where placen=true ' );
+    $odj = DB::select('select * from odjecapolja where placen=true ' );
+    $pos = DB::select('select * from posaopolja where placen=true ' );
+    $raz = DB::select('select * from raznopolja where placen=true ' );
     if ($teh){
         for ($i = 0; $i < sizeof($teh); $i++) {
             $teh[$i]->slika = slika::where('slika_tehnika', $teh[$i]->id)->get();
