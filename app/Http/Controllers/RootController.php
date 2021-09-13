@@ -34,13 +34,13 @@ public function addAutomoto(Request $req)
         return automoto::all();
     }
 
-    public function addHrana($tip){
+    public function addHrana(Request $req){
         $novi =new HranaiPice1();
-        $novi->tip=$tip;
+        $novi->tip=$req->tip;
         $novi->save();
         return HranaiPice1::all();
     }
-    public function delHrana($id){
+    public function delHrana(Request $req){
         DB::select('delete from hrana_ipice where id='.$id);
         return HranaiPice1::all();
     }
@@ -50,9 +50,9 @@ public function addAutomoto(Request $req)
     }
 
 
-    public function addNekretnine($tip){
+    public function addNekretnine(Request $req){
         $novi =new nekretnine();
-        $novi->tip=$tip;
+        $novi->tip=$req->tip;
         $novi->save();
         return nekretnine::all();
     }
@@ -65,9 +65,9 @@ public function addAutomoto(Request $req)
         return nekretnine::all();
     }
 
-    public function addOdjeca($tip){
+    public function addOdjeca(Request $req){
         $novi =new odjeca();
-        $novi->tip=$tip;
+        $novi->tip=$req->tip;
         $novi->save();
         return odjeca::all();
     }
@@ -79,9 +79,9 @@ public function addAutomoto(Request $req)
     public function getOdjeca(){
         return odjeca::all();
     }
-    public function addPosao($tip){
+    public function addPosao(Request $req){
         $novi =new posao();
-        $novi->tip=$tip;
+        $novi->tip=$req->tip;
         $novi->save();
         return posao::all();
     }
@@ -109,9 +109,9 @@ public function addAutomoto(Request $req)
         return razno::all();
     }
 
-    public function addTehnika($tip){
+    public function addTehnika(Request $req){
         $novi =new tehnika();
-        $novi->tip=$tip;
+        $novi->tip=$req->tip;
         $novi->save();
         return tehnika::all();
     }

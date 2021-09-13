@@ -88,11 +88,11 @@ Route::post('addAutoTip', 'RootController@addAutomoto');
 Route::get('delAutoTip/{id}', 'rootController@delAutomoto');
 Route::get('getAutoTip', 'rootController@getAutomoto');
 
-Route::post('addHranaTip/{tip}', 'rootController@addHrana');
+Route::post('addHranaTip', 'rootController@addHrana');
 Route::get('delHranaTip/{id}', 'rootController@delHrana');
 Route::get('getHranaTip','rootController@getHrana');
 
-Route::post('addNekretnineTip/{tip}', 'rootController@addNekretnine');
+Route::post('addNekretnineTip', 'rootController@addNekretnine');
 Route::get('delNekretnineTip/{id}', 'rootController@delNekretnine');
 Route::get('getNekretnineTip','rootController@getNekretnine');
 
@@ -100,15 +100,15 @@ Route::post('addOdjecaTip', 'rootController@addOdjeca');
 Route::get('delOdjecaTip/{id}', 'rootController@delOdjeca');
 Route::get('getOdjecaTip','rootController@getOdjeca');
 
-Route::post('addPosaoTip/{tip}', 'rootController@addPosao');
+Route::post('addPosaoTip', 'rootController@addPosao');
 Route::get('delPosaoTip/{id}', 'rootController@delPosao');
 Route::get('getPosaoTip','rootController@getPosao');
 
-Route::post('addRaznoTip/{tip}', 'rootController@addRazno');
+Route::post('addRaznoTip', 'rootController@addRazno');
 Route::get('delRaznoTip/{id}', 'rootController@delRazno');
 Route::get('getRaznoTip','rootController@getRazno');
 
-Route::post('addTehnikaTip/{tip}', 'rootController@addTehnika');
+Route::post('addTehnikaTip', 'rootController@addTehnika');
 Route::get('delTehnikaTip/{id}', 'rootController@delTehnika');
 Route::get('getTehnikaTip','rootController@getTehnika');
 
