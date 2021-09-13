@@ -38,7 +38,7 @@ class CreateAutomotopoljaTable extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
-            $table->string('javno');
+            $table->string('javno')->nullable();
         });
     }
 

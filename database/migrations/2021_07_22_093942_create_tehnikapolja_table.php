@@ -31,7 +31,7 @@ class CreateTehnikapoljaTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('karakteristike')->nullable();
             $table->integer('godina_proizvodnje')->nullable();
-            $table->string('javno');
+            $table->string('javno')->nullable();
 
 
 
