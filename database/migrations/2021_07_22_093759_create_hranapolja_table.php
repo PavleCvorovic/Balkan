@@ -30,7 +30,7 @@ class CreateHranapoljaTable extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->boolean('placen')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-
+            $table->string('javno');
             $table->timestamps();
         });
     }

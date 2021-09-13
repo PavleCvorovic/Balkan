@@ -28,7 +28,7 @@ class CreatePosaopoljaTable extends Migration
             $table->float('duzina')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-
+            $table->string('javno');
             $table->timestamps();
         });
     }
