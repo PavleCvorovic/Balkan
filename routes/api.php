@@ -84,7 +84,7 @@ Route::get('getType_Razno/{tip}', 'raznoController@getType');
 
 
 //Admin api
-Route::post('addAutoTip/{tip}', 'rootController@addAutomoto');
+Route::post('addAutoTip', 'RootController@addAutomoto');
 Route::get('delAutoTip/{id}', 'rootController@delAutomoto');
 Route::get('getAutoTip', 'rootController@getAutomoto');
 
@@ -96,7 +96,7 @@ Route::post('addNekretnineTip/{tip}', 'rootController@addNekretnine');
 Route::get('delNekretnineTip/{id}', 'rootController@delNekretnine');
 Route::get('getNekretnineTip','rootController@getNekretnine');
 
-Route::post('addOdjecaTip/{tip}', 'rootController@addOdjeca');
+Route::post('addOdjecaTip', 'rootController@addOdjeca');
 Route::get('delOdjecaTip/{id}', 'rootController@delOdjeca');
 Route::get('getOdjecaTip','rootController@getOdjeca');
 

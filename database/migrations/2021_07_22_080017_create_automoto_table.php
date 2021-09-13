@@ -15,7 +15,7 @@ class CreateAutomotoTable extends Migration
     {
         Schema::create('automoto', function (Blueprint $table) {
             $table->id();
-            $table->string('tip')->unique();
+            $table->string('tip');
         });
     }
 

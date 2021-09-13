@@ -8,6 +8,7 @@ use App\Models\automoto;
 use App\Models\HranaiPice1;
 use App\Models\nekretnine;
 use App\Models\odjeca;
+use Illuminate\Http\Request;
 use App\Models\posao;
 use App\Models\razno;
 use App\Models\tehnika;
@@ -15,12 +16,15 @@ use Illuminate\Support\Facades\DB;
 
 class RootController extends \Illuminate\Routing\Controller
 {
-public function addAutomoto($tip){
- $novi =new automoto();
- $novi->tip=$tip;
-$novi->save();
-return automoto::all();
+public function addAutomoto(Request $req)
+{
+    $automoto = new automoto();
+    $automoto->tip = $req->tip;
+   // return $req;
+    $automoto->save();
+    return automoto::all();
 }
+
     public function delAutomoto($id){
      DB::select('delete from automoto where id='.$id);
         return automoto::all();
