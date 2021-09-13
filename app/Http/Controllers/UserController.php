@@ -397,4 +397,20 @@ public function getAll(){
     }
 
 
+    public function show()
+    {
+        return User::all();
+    }
+    public function showId($id)
+    {
+        return User::find($id);
+    }
+
+    public function delete($id)
+    {
+
+        DB::select('DELETE FROM users WHERE id='.$id);
+        return User::all();
+    }
+
 }
