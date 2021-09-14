@@ -29,7 +29,7 @@ class CreateSlikaTable extends Migration
             $table->foreign('slika_posao')->references('id')->on('posaopolja');
             $table->bigInteger('slika_razno')->unsigned()->nullable();
             $table->foreign('slika_razno')->references('id')->on('raznopolja');
-             $table->string('javno');
+
             $table->string('url');
             $table->timestamps();
         });
