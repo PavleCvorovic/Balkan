@@ -70,6 +70,7 @@ $rezultat1->podaci=$rezultat;
         $produkt->sirina = $request->sirina;
         $produkt->duzina = $request->duzina;
         $produkt->user_id = $request->user_id;
+        $produkt->javno = 0;
         $produkt->index='raznopolja';
         $produkt->save();
         $zadnji = $produkt->id;
