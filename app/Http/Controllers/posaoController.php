@@ -17,7 +17,7 @@ class posaoController extends \Illuminate\Routing\Controller
     }
     public  function  getType($tip){
 
-        $svi= DB::select('select * from posaopolja where posao_vrsta='.$tip);
+        $svi= DB::select('select * from posaopolja where javno="1" and posao_vrsta='.$tip);
 
         for($i=0; $i<sizeof($svi);$i++){
             $svi[$i]->slika = slika::where('slika_posao', $svi[$i]->id)->get();
@@ -142,7 +142,7 @@ class posaoController extends \Illuminate\Routing\Controller
 
 
 
-        $sve= posaopolja::select('posaopolja.*');
+        $sve= posaopolja::select('posaopolja.*')->where('javno',"1");
 
         if ($id)
             $sve= $sve->where('posao_vrsta',$id);

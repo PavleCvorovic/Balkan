@@ -18,7 +18,7 @@ class odjecaController extends \Illuminate\Routing\Controller
     }
     public  function  getType($tip){
 
-        $svi= DB::select('select * from odjecapolja where odjeca_vrsta='.$tip);
+        $svi= DB::select('select * from odjecapolja where javno="1" and odjeca_vrsta='.$tip);
 
         for($i=0; $i<sizeof($svi);$i++){
             $svi[$i]->slika = slika::where('slika_odjeca', $svi[$i]->id)->get();
@@ -135,7 +135,7 @@ return odjecapolja::all();
 
 
 
-        $sve= odjecapolja::select('odjecapolja.*');
+        $sve= odjecapolja::select('odjecapolja.*')->where('javno',"1");
 
         if ($id)
             $sve= $sve->where('odjeca_vrsta',$id);

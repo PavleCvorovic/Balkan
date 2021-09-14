@@ -19,7 +19,7 @@ class automotoController extends \Illuminate\Routing\Controller
     }
 public  function  getType($tip){
 
-     $svi= DB::select('select * from automotopolja where automoto_vrsta='.$tip);
+     $svi= DB::select('select * from automotopolja where javno="1" and automoto_vrsta='.$tip);
 
     for($i=0; $i<sizeof($svi);$i++){
         $svi[$i]->slika = slika::where('slika_automoto', $svi[$i]->id)->get();
@@ -161,7 +161,7 @@ return $svi;
         $kubikaza_min=$request->kubikazaMin;
         $kubikaza_max=$request->kubikazaMax;
 
-        $sve= automotopolja::select('automotopolja.*');
+        $sve= automotopolja::select('automotopolja.*')->where('javno',"1");
 
         if ($id)
             $sve= $sve->where('automoto_vrsta',$id);

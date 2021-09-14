@@ -17,7 +17,7 @@ class hranaController extends \Illuminate\Routing\Controller
     }
     public  function  getType($tip){
 
-        $svi= DB::select('select * from hranapolja where hrana_vrsta='.$tip);
+        $svi= DB::select('select * from hranapolja where javno="1" and hrana_vrsta='.$tip);
 
         for($i=0; $i<sizeof($svi);$i++){
             $svi[$i]->slika = slika::where('slika_hrana', $svi[$i]->id)->get();
@@ -137,7 +137,7 @@ class hranaController extends \Illuminate\Routing\Controller
 
 
 
-        $sve= HranaiPice::select('hranapolja.*');
+        $sve= HranaiPice::select('hranapolja.*')->where('javno',"1");
 
         if ($id)
             $sve= $sve->where('hrana_vrsta',$id);

@@ -19,7 +19,7 @@ class tehnikaController extends Controller
     }
     public  function  getType($tip){
 
-        $svi= DB::select('select * from tehnikapolja where tehnika_vrsta='.$tip);
+        $svi= DB::select('select * from tehnikapolja where javno="1" and tehnika_vrsta='.$tip);
 
         for($i=0; $i<sizeof($svi);$i++){
             $svi[$i]->slika = slika::where('slika_tehnika', $svi[$i]->id)->get();
@@ -141,7 +141,7 @@ class tehnikaController extends Controller
         $godiste_max=$request->godisteMax;
 
 
-        $sve= tehnikapolja::select('tehnikapolja.*');
+        $sve= tehnikapolja::select('tehnikapolja.*')->where('javno',"1");
 
         if ($id)
             $sve= $sve->where('tehnika_vrsta',$id);

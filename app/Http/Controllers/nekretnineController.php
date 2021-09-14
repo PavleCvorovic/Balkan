@@ -17,7 +17,7 @@ class nekretnineController extends Controller
     }
     public  function  getType($tip){
 
-        $svi= DB::select('select * from nekretninepolja where nekretnine_vrsta='.$tip);
+        $svi= DB::select('select * from nekretninepolja where javno="1" and nekretnine_vrsta='.$tip);
 
         for($i=0; $i<sizeof($svi);$i++){
             $svi[$i]->slika = slika::where('slika_nekretnine', $svi[$i]->id)->get();
@@ -136,7 +136,7 @@ return nekretninepolja::all();
         $kvadratura_min= $request->kvadraturaMin;
         $kvadratura_max= $request->kvadraturaMax;
 
-        $sve= nekretninepolja::select('nekretninepolja.*');
+        $sve= nekretninepolja::select('nekretninepolja.*')->where('javno',"1");
 
         if ($id)
             $sve= $sve->where('nekretnine_vrsta',$id);

@@ -19,7 +19,7 @@ class raznoController extends \Illuminate\Routing\Controller
     }
     public  function  getType($tip){
 
-        $svi= DB::select('select * from raznopolja where razno_vrsta='.$tip);
+        $svi= DB::select('select * from raznopolja where javno="1" and razno_vrsta='.$tip);
 
         for($i=0; $i<sizeof($svi);$i++){
             $svi[$i]->slika = slika::where('slika_razno', $svi[$i]->id)->get();
@@ -142,7 +142,7 @@ return raznopolja::all();
 
 
 
-        $sve= raznopolja::select('raznopolja.*');
+        $sve= raznopolja::select('raznopolja.*')->where('javno',"1");
 
         if ($id)
             $sve= $sve->where('razno_vrsta',$id);
