@@ -40,7 +40,7 @@ public function addAutomoto(Request $req)
         $novi->save();
         return HranaiPice1::all();
     }
-    public function delHrana(Request $req){
+    public function delHrana($id){
         DB::select('delete from hrana_ipice where id='.$id);
         return HranaiPice1::all();
     }
