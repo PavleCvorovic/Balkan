@@ -286,13 +286,13 @@ public function getAllApproved(){
 
         $svi = array();
 
-        $teh = DB::select('select * from tehnikapolja  where placen=true and javno="1"' );
-        $aut = DB::select('select * from automotopolja  where placen=true and javno="1"' );
-        $hrana = DB::select('select * from hranapolja  where placen=true and javno="1"' );
-        $nek = DB::select('select * from nekretninepolja where placen=true and javno="1" ' );
-        $odj = DB::select('select * from odjecapolja where placen=true and javno="1" ' );
-        $pos = DB::select('select * from posaopolja where placen=true and javno="1" ' );
-        $raz = DB::select('select * from raznopolja where placen=true and javno="1" ' );
+        $teh = DB::select('select * from tehnikapolja  where placen=true and javno="0"' );
+        $aut = DB::select('select * from automotopolja  where placen=true and javno="0"' );
+        $hrana = DB::select('select * from hranapolja  where placen=true and javno="0"' );
+        $nek = DB::select('select * from nekretninepolja where placen=true and javno="0" ' );
+        $odj = DB::select('select * from odjecapolja where placen=true and javno="0" ' );
+        $pos = DB::select('select * from posaopolja where placen=true and javno="0" ' );
+        $raz = DB::select('select * from raznopolja where placen=true and javno="0" ' );
         if ($teh){
             for ($i = 0; $i < sizeof($teh); $i++) {
                 $teh[$i]->slika = slika::where('slika_tehnika', $teh[$i]->id)->get();
