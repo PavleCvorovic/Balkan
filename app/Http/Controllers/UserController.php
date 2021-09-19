@@ -405,6 +405,8 @@ public function getAllFeatured(){
         return $niz;
     }
 
+    
+
 
 
 
