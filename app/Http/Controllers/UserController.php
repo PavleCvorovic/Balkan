@@ -350,6 +350,61 @@ public function getAllFeatured(){
 
 
 
+    public function getAllCheap(){
+
+
+        $svi = array();
+
+        $teh = DB::select('select * from tehnikapolja  where  cijena<100 and javno="1"' );
+        $aut = DB::select('select * from automotopolja  where  cijena<100 and javno="1"' );
+        $hrana = DB::select('select * from hranapolja  where  cijena<100 and javno="1"' );
+        $nek = DB::select('select * from nekretninepolja where  cijena<100 and javno="1" ' );
+        $odj = DB::select('select * from odjecapolja where cijena<100 and javno="1" ' );
+        $raz = DB::select('select * from raznopolja where  cijena<100 and javno="1" ' );
+        if ($teh){
+            for ($i = 0; $i < sizeof($teh); $i++) {
+                $teh[$i]->slika = slika::where('slika_tehnika', $teh[$i]->id)->get();
+            }
+            array_push($svi, $teh);
+        }
+        if ($aut){
+            for ($i = 0; $i < sizeof($aut); $i++) {
+                $aut[$i]->slika = slika::where('slika_automoto', $aut[$i]->id)->get();
+            }
+            array_push($svi, $aut);}
+        if ($hrana){
+            for ($i = 0; $i < sizeof($hrana); $i++) {
+                $hrana[$i]->slika = slika::where('slika_hrana', $hrana[$i]->id)->get();
+            }
+            array_push($svi, $hrana);}
+        if ($nek){
+            for ($i = 0; $i < sizeof($nek); $i++) {
+                $nek[$i]->slika = slika::where('slika_nekretnine', $nek[$i]->id)->get();
+            }
+            array_push($svi, $nek);}
+        if ($odj){
+            for ($i = 0; $i < sizeof($odj); $i++) {
+                $odj[$i]->slika = slika::where('slika_odjeca', $odj[$i]->id)->get();
+            }
+            array_push($svi, $odj);}
+        if ($raz) {
+            for ($i = 0; $i < sizeof($raz); $i++) {
+                $raz[$i]->slika = slika::where('slika_razno', $raz[$i]->id)->get();
+            }
+            array_push($svi, $raz);
+        }
+        shuffle($svi);
+        $niz=[];
+        foreach ($svi as $dijete){
+            foreach ($dijete as $value){
+                $niz[]=$value;
+
+            }
+        }
+        shuffle($niz);
+        return $niz;
+    }
+
 
 
 
