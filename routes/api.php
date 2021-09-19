@@ -129,7 +129,8 @@ Route::post('getAllId', 'UserController@GetId');
 Route::post('filter', 'UserController@Filter');
 Route::post('getPostsAll', 'UserController@GetPosts');
 Route::get('adminGet', 'UserController@deleteAdmin');
-Route::get('getAll', 'UserController@getAllApproved');
+Route::get('getAllFeatured', 'UserController@getAllFeatured');
+Route::get('getAllRandom', 'UserController@getAllRandom');
 Route::get('getAllNew', 'UserController@getAllNew');
 
 Route::get('showUsers', 'UserController@show');
