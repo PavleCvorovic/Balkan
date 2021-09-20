@@ -136,3 +136,4 @@ Route::get('getAllCheap', 'UserController@getAllCheap');
 Route::get('showUsers', 'UserController@show');
 Route::get('showUser/{id}', 'UserController@showId');
 Route::delete('deleteUser/{id}', 'UserController@delete');
+Route::post('setAllNew', 'UserController@setAllNew');
