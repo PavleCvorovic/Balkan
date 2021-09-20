@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\automotopolja;
 use App\Models\nekretnine;
 use App\Models\nekretninepolja;
+use App\Models\odjecapolja;
 use App\Models\posaopolja;
 use App\Models\razno;
 use App\Models\raznopolja;
@@ -418,41 +419,81 @@ public function getAllFeatured(){
                 $post = automotopolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return $post;
+                return automotopolja::all();
             case('hranapolja'):
                 $post = hranapolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return $post;
+                return hranapolja::all();
             case('nekretninepolja'):
                 $post = nekretninepolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return $post;
+                return nekretninepolja::all();
             case('odjecapolja'):
-                $a = new odjecaController();
-                return   $a->setVisible($request->id);
+                $post = odjecapolja::find($request->id);
+                $post ->javno = 1;
+                $post->save();
+                return odjecapolja::all();
             case('posaopolja'):
                 $post = posaopolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return $post;
+                return posaopolja::all();
             case('raznopolja'):
                 $post = raznopolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return $post;
+                return raznopolja::all();
             case('tehnikapolja'):
                 $post = tehnikapolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return $post;
+                return tehnikapolja::all();
 
         }
 
 
 
 
+    }
+
+
+
+    public function deleteNew(Request $request)
+    {
+
+        switch ($request->index) {
+            case('automotopolja'):
+                DB::select('delete  from slika where slika_automoto='.$request->id);
+                DB::select('delete  from automotopolja where id='.$request->id);
+                return automotopolja::all();
+            case('hranapolja'):
+                DB::select('delete  from slika where slika_hrana='.$request->id);
+                DB::select('delete  from hranapolja where id='.$request->id);
+                return hranapolja::all();
+            case('nekretninepolja'):
+                DB::select('delete  from slika where slika_nekretnine='.$request->id);
+                DB::select('delete  from nekreninepolja where id='.$request->id);
+                return nekretninepolja::all();
+            case('odjecapolja'):
+                DB::select('delete  from slika where slika_odjeca='.$request->id);
+                DB::select('delete  from odjecapolja where id='.$request->id);
+                return odjecapolja::all();
+            case('posaopolja'):
+                DB::select('delete  from slika where slika_posao='.$request->id);
+                DB::select('delete  from posaopolja where id='.$request->id);
+                return posaopolja::all();
+            case('raznopolja'):
+                DB::select('delete  from slika where slika_razno='.$request->id);
+                DB::select('delete  from raznopolja where id='.$request->id);
+                return raznopolja::all();
+            case('tehnikapolja'):
+                DB::select('delete  from slika where slika_tehnika='.$request->id);
+                DB::select('delete  from tehnikapolja where id='.$request->id);
+                return tehnikapolja::all();
+
+        }
     }
 
 
@@ -516,6 +557,7 @@ public function getAllFeatured(){
         shuffle($svi);
         return $svi;
     }
+
 
 
 
