@@ -522,33 +522,27 @@ public function getAllFeatured(){
             case('automotopolja'):
                 DB::select('delete  from slika where slika_automoto='.$request->id);
                 DB::select('delete  from automotopolja where id='.$request->id);
-                return automotopolja::all();
             case('hranapolja'):
                 DB::select('delete  from slika where slika_hrana='.$request->id);
                 DB::select('delete  from hranapolja where id='.$request->id);
-                return hranapolja::all();
             case('nekretninepolja'):
                 DB::select('delete  from slika where slika_nekretnine='.$request->id);
                 DB::select('delete  from nekreninepolja where id='.$request->id);
-                return nekretninepolja::all();
             case('odjecapolja'):
                 DB::select('delete  from slika where slika_odjeca='.$request->id);
                 DB::select('delete  from odjecapolja where id='.$request->id);
-                return odjecapolja::all();
             case('posaopolja'):
                 DB::select('delete  from slika where slika_posao='.$request->id);
                 DB::select('delete  from posaopolja where id='.$request->id);
-                return posaopolja::all();
             case('raznopolja'):
                 DB::select('delete  from slika where slika_razno='.$request->id);
                 DB::select('delete  from raznopolja where id='.$request->id);
-                return raznopolja::all();
             case('tehnikapolja'):
                 DB::select('delete  from slika where slika_tehnika='.$request->id);
                 DB::select('delete  from tehnikapolja where id='.$request->id);
-                return tehnikapolja::all();
 
         }
+        return $this->getAllNew();
     }
 
 
@@ -609,8 +603,16 @@ public function getAllFeatured(){
             }
             array_push($svi, $raz);
         }
-        shuffle($svi);
-        return $svi;
+        $niz=[];
+        foreach ($svi as $dijete){
+            foreach ($dijete as $value){
+                $niz[]=$value;
+
+            }
+        }
+
+        return $niz;
+
     }
 
 
