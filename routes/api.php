@@ -24,6 +24,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Kod modifikovanja, ID oglasa koji se izmjenjuje saljes zajedno sa objektom u koji stoje ostale promjene
 
 
+
+
+
+
+
 //Tehnika api
 Route::get('getAll_Tehnika', 'tehnikaController@getAll');
 Route::get('getId_Tehnika/{id}', 'tehnikaController@getId');

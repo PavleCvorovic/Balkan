@@ -407,47 +407,33 @@ public function getAllFeatured(){
 
     public function setAllNew(Request $request)
     {
-        
 
+        switch($request->index) {
+            case('automotopolja'):
+                $a = new automotoController();
+                return   $a->setVisible($request->id);
+            case('hranapolja'):
+                $a = new hranaController();
+                return   $a->setVisible($request->id);
+            case('nekretninepolja'):
+                $a = new nekretnineController();
+                return   $a->setVisible($request->id);
+            case('odjecapolja'):
+                $a = new odjecaController();
+                return   $a->setVisible($request->id);
+            case('posaopolja'):
+                $a = new posaoController();
+                return   $a->setVisible($request->id);
+            case('raznopolja'):
+                $a = new raznoController();
+                return   $a->setVisible($request->id);
+            case('tehnikapolja'):
+                $a = new tehnikaController();
+                return   $a->setVisible($request->id);
 
-        $svi = array();
-
-        $teh = DB::select('select * from tehnikapolja  where id='.$request->id);
-        $aut = DB::select('select * from automotopolja  where  id='.$request->id);
-        $hrana = DB::select('select * from hranapolja  where  id='.$request->id);
-        $nek = DB::select('select * from nekretninepolja where  id='.$request->id);
-        $odj = DB::select('select * from odjecapolja where id='.$request->id);
-        $raz = DB::select('select * from raznopolja where  id='.$request->id);
-        if ($teh) {
-            $teh->javno = 1;
-            $teh->save();
-            return $teh;
         }
-        if ($aut) {
-            $aut->javno = 1;
-            $aut->save();
-            return $aut;
-        }
-            if ($hrana) {
-                $hrana->javno = 1;
-                $hrana->save();
-                return $hrana;
-            }
-            if ($nek) {
-                $nek->javno = 1;
-                $nek->save();
-                return $nek;
-            }
-            if ($odj) {
-                $odj->javno = 1;
-                $odj->save();
-                return $odj;
-            }
-            if ($raz) {
-                $raz->javno = 1;
-                $odj->save();
-                return $odj;
-            }
+
+
 
 
     }

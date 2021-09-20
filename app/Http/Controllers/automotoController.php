@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\DB;
 class automotoController extends \Illuminate\Routing\Controller
 {
 
+    public  function setVisible(Request $req){
+        $post= automotopolja::find( $req->id);
+        $post->javno=1;
+
+    }
+
+
+
+
     public function getAllTypes(){
         return automoto::all();
     }

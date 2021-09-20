@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\DB;
 
 class posaoController extends \Illuminate\Routing\Controller
 {
+
+    public  function setVisible(Request $req){
+        $post= posaopolja::find( $req->id);
+        $post->javno=1;
+
+    }
     public function getAllTypes(){
         return posao::all();
     }

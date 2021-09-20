@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\DB;
 
 class hranaController extends \Illuminate\Routing\Controller
 {
+    public  function setVisible(Request $req){
+        $post= hranapolja::find( $req->id);
+        $post->javno=1;
+
+    }
     public function getAllTypes(){
         return HranaiPice1::all();
     }
