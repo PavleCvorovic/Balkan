@@ -138,6 +138,7 @@ Route::get('getAllFeatured', 'UserController@getAllFeatured');
 Route::get('getAllRandom', 'UserController@getAllRandom');
 Route::get('getAllNew', 'UserController@getAllNew');
 Route::get('getAllCheap', 'UserController@getAllCheap');
+Route::get('getNewest', 'UserController@getNewest');
 Route::get('showUsers', 'UserController@show');
 Route::get('showUser/{id}', 'UserController@showId');
 Route::delete('deleteUser/{id}', 'UserController@delete');

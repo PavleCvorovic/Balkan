@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class slika extends Model
 {
     use HasFactory;
-    use HasFactory;
-    public  $timestamps = false;
+
     protected $table ='slika';
 
 
