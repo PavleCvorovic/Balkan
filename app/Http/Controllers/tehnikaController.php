@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\DB;
 class tehnikaController extends Controller
 {
 
-    public  function setVisible(Request $req){
-        $post= tehnikapolja::find( $req->id);
-        $post->javno=1;
 
-    }
 
 
     public function getAllTypes(){

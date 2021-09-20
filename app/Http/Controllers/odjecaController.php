@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class odjecaController extends \Illuminate\Routing\Controller
 {
-    public  function setVisible(Request $req){
-        $post= odjecapolja::find( $req->id);
-        $post->javno=1;
-
-    }
 
 
     public function getAllTypes(){

@@ -13,11 +13,7 @@ use function Sodium\add;
 
 class raznoController extends \Illuminate\Routing\Controller
 {
-    public  function setVisible(Request $req){
-        $post= raznopolja::find( $req->id);
-        $post->javno=1;
-
-    }
+ 
     public function getAllTypes(){
         return razno::all();
     }

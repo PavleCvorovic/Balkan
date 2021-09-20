@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class nekretnineController extends Controller
 {
-    public  function setVisible(Request $req){
-        $post= nekretninepolja::find( $req->id);
-        $post->javno=1;
 
-    }
     public function getAllTypes(){
         return nekretnine::all();
     }
