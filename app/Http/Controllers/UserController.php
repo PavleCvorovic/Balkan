@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\automotopolja;
+use App\Models\nekretnine;
+use App\Models\nekretninepolja;
+use App\Models\posaopolja;
 use App\Models\razno;
+use App\Models\raznopolja;
 use App\Models\slika;
+use App\Models\tehnikapolja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -410,26 +415,38 @@ public function getAllFeatured(){
 
         switch($request->index) {
             case('automotopolja'):
-                $a = new automotoController();
-                return   $a->setVisible($request->id);
+                $post = automotopolja::find($request->id);
+                $post ->javno = 1;
+                $post->save();
+                return $post;
             case('hranapolja'):
-                $a = new hranaController();
-                return   $a->setVisible($request->id);
+                $post = hranapolja::find($request->id);
+                $post ->javno = 1;
+                $post->save();
+                return $post;
             case('nekretninepolja'):
-                $a = new nekretnineController();
-                return   $a->setVisible($request->id);
+                $post = nekretninepolja::find($request->id);
+                $post ->javno = 1;
+                $post->save();
+                return $post;
             case('odjecapolja'):
                 $a = new odjecaController();
                 return   $a->setVisible($request->id);
             case('posaopolja'):
-                $a = new posaoController();
-                return   $a->setVisible($request->id);
+                $post = posaopolja::find($request->id);
+                $post ->javno = 1;
+                $post->save();
+                return $post;
             case('raznopolja'):
-                $a = new raznoController();
-                return   $a->setVisible($request->id);
+                $post = raznopolja::find($request->id);
+                $post ->javno = 1;
+                $post->save();
+                return $post;
             case('tehnikapolja'):
-                $a = new tehnikaController();
-                return   $a->setVisible($request->id);
+                $post = tehnikapolja::find($request->id);
+                $post ->javno = 1;
+                $post->save();
+                return $post;
 
         }
 
