@@ -630,6 +630,7 @@ echo $request->index;
             case('automotopolja'):
                 DB::select('delete  from slika where slika_automoto='.$request->id);
                 DB::select('delete  from automotopolja where id='.$request->id);
+<<<<<<< Updated upstream
             case('hranapolja'):
                 DB::select('delete  from slika where slika_hrana='.$request->id);
                 DB::select('delete  from hranapolja where id='.$request->id);
@@ -639,6 +640,21 @@ echo $request->index;
             case('odjecapolja'):
                 DB::select('delete  from slika where slika_odjeca='.$request->id);
                 DB::select('delete  from odjecapolja where id='.$request->id);
+=======
+
+            case('hranapolja'):
+                DB::select('delete  from slika where slika_hrana='.$request->id);
+                DB::select('delete  from hranapolja where id='.$request->id);
+
+            case('nekretninepolja'):
+                DB::select('delete  from slika where slika_nekretnine='.$request->id);
+                DB::select('delete  from nekreninepolja where id='.$request->id);
+
+            case('odjecapolja'):
+                DB::select('delete  from slika where slika_odjeca='.$request->id);
+                DB::select('delete  from odjecapolja where id='.$request->id);
+
+>>>>>>> Stashed changes
             case('posaopolja'):
                 DB::select('delete  from slika where slika_posao='.$request->id);
                 DB::select('delete  from posaopolja where id='.$request->id);
@@ -648,6 +664,10 @@ echo $request->index;
             case('tehnikapolja'):
                 DB::select('delete  from slika where slika_tehnika='.$request->id);
                 DB::select('delete  from tehnikapolja where id='.$request->id);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
         }
         return $this->getAllNew();
@@ -720,7 +740,10 @@ echo $request->index;
         }
 
         return $niz;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     }
 
 
