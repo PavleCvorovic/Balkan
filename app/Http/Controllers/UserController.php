@@ -572,10 +572,10 @@ echo $request->index;
                 $post->sirina = $request->sirina;
                 $post->duzina = $request->duzina;
                 $post->user_id = $request->user_id;
-                break;
+
 
                 $post->save();
-
+                break;
             case('hranapolja'):
                 $post = hranapolja::find($request->id);
                 $post->modcijena=$request->cijena;
@@ -628,51 +628,45 @@ echo $request->index;
 
         switch ($request->index) {
             case('automotopolja'):
-                DB::select('delete  from slika where slika_automoto='.$request->id);
-                DB::select('delete  from automotopolja where id='.$request->id);
-<<<<<<< Updated upstream
-            case('hranapolja'):
-                DB::select('delete  from slika where slika_hrana='.$request->id);
-                DB::select('delete  from hranapolja where id='.$request->id);
-            case('nekretninepolja'):
-                DB::select('delete  from slika where slika_nekretnine='.$request->id);
-                DB::select('delete  from nekreninepolja where id='.$request->id);
-            case('odjecapolja'):
-                DB::select('delete  from slika where slika_odjeca='.$request->id);
-                DB::select('delete  from odjecapolja where id='.$request->id);
-=======
+                DB::select('delete  from slika where slika_automoto=' . $request->id);
+                DB::select('delete  from automotopolja where id=' . $request->id);
 
             case('hranapolja'):
-                DB::select('delete  from slika where slika_hrana='.$request->id);
-                DB::select('delete  from hranapolja where id='.$request->id);
+                DB::select('delete  from slika where slika_hrana=' . $request->id);
+                DB::select('delete  from hranapolja where id=' . $request->id);
+            case('nekretninepolja'):
+                DB::select('delete  from slika where slika_nekretnine=' . $request->id);
+                DB::select('delete  from nekreninepolja where id=' . $request->id);
+            case('odjecapolja'):
+                DB::select('delete  from slika where slika_odjeca=' . $request->id);
+                DB::select('delete  from odjecapolja where id=' . $request->id);
+
+
+            case('hranapolja'):
+                DB::select('delete  from slika where slika_hrana=' . $request->id);
+                DB::select('delete  from hranapolja where id=' . $request->id);
 
             case('nekretninepolja'):
-                DB::select('delete  from slika where slika_nekretnine='.$request->id);
-                DB::select('delete  from nekreninepolja where id='.$request->id);
+                DB::select('delete  from slika where slika_nekretnine=' . $request->id);
+                DB::select('delete  from nekreninepolja where id=' . $request->id);
 
             case('odjecapolja'):
-                DB::select('delete  from slika where slika_odjeca='.$request->id);
-                DB::select('delete  from odjecapolja where id='.$request->id);
+                DB::select('delete  from slika where slika_odjeca=' . $request->id);
+                DB::select('delete  from odjecapolja where id=' . $request->id);
 
->>>>>>> Stashed changes
             case('posaopolja'):
-                DB::select('delete  from slika where slika_posao='.$request->id);
-                DB::select('delete  from posaopolja where id='.$request->id);
+                DB::select('delete  from slika where slika_posao=' . $request->id);
+                DB::select('delete  from posaopolja where id=' . $request->id);
             case('raznopolja'):
-                DB::select('delete  from slika where slika_razno='.$request->id);
-                DB::select('delete  from raznopolja where id='.$request->id);
+                DB::select('delete  from slika where slika_razno=' . $request->id);
+                DB::select('delete  from raznopolja where id=' . $request->id);
             case('tehnikapolja'):
-                DB::select('delete  from slika where slika_tehnika='.$request->id);
-                DB::select('delete  from tehnikapolja where id='.$request->id);
-<<<<<<< Updated upstream
-=======
+                DB::select('delete  from slika where slika_tehnika=' . $request->id);
+                DB::select('delete  from tehnikapolja where id=' . $request->id);
 
->>>>>>> Stashed changes
-
+                return $this->getAllNew();
         }
-        return $this->getAllNew();
     }
-
 
 
 
@@ -740,10 +734,7 @@ echo $request->index;
         }
 
         return $niz;
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
     }
 
 
