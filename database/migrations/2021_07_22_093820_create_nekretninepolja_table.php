@@ -32,6 +32,8 @@ class CreateNekretninepoljaTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->string('javno')->nullable();
+            $table->string('modcijena')->nullable();
+            $table->string('procenat')->nullable();
         });
     }
 

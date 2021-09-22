@@ -32,6 +32,8 @@ class CreateTehnikapoljaTable extends Migration
             $table->string('karakteristike')->nullable();
             $table->integer('godina_proizvodnje')->nullable();
             $table->string('javno')->nullable();
+            $table->string('modcijena')->nullable();
+            $table->string('procenat')->nullable();
 
 
 

@@ -31,6 +31,8 @@ class CreateOdjecapoljaTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('dimenzije')->nullable();
             $table->string('javno')->nullable();
+            $table->string('modcijena')->nullable();
+            $table->string('procenat')->nullable();
             $table->timestamps();
         });
     }

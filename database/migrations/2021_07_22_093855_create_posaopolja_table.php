@@ -30,6 +30,8 @@ class CreatePosaopoljaTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('javno')->nullable();
             $table->timestamps();
+            $table->string('modcijena')->nullable();
+            $table->string('procenat')->nullable();
         });
     }
 

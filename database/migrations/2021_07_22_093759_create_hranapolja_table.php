@@ -31,6 +31,9 @@ class CreateHranapoljaTable extends Migration
             $table->boolean('placen')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('javno')->nullable();
+            $table->string('modcijena')->nullable();
+            $table->string('procenat')->nullable();
+
             $table->timestamps();
         });
     }

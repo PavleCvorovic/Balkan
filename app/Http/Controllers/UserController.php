@@ -152,7 +152,37 @@ $data['token'] = auth()->claims([
             array_push($svi, $raz);
         }
 return $svi;
+
     }
+
+    public function getPostbyIdUser(Request $request)
+    {
+
+        switch($request->tabela) {
+            case('automotopolja'):
+              $aut=  automotopolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+return $aut;
+            case('hranapolja'):
+                $hra=  hranapolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                return $hra;
+            case('nekretninepolja'):
+                $nek=  nekretninepolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                return $nek;
+            case('odjecapolja'):
+                $odj=  odjecapolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                return $odj;
+            case('posaopolja'):
+                $pos=  posaopolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                return $pos;
+            case('raznopolja'):
+                $raz=  raznopolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                return $raz;
+            case('tehnikapolja'):
+                $teh=  tehnikapolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                return $teh;
+
+        }}
+
 
     public function DelAsUser(Request $request)
     {
@@ -513,6 +543,84 @@ public function getAllFeatured(){
 
     }
 
+
+
+
+
+
+    public function modPostUser(Request $request)
+    {
+echo $request->index;
+        switch($request->index) {
+            case('automotopolja'):
+                $post= automotopolja::find($request->id);
+                $post->automoto_vrsta = $request->automoto_vrsta;
+                $post->naziv = $request->naziv;
+                $post->marka = $request->marka;
+                $post->model = $request->model;
+                $post->godina_proizvodnje = $request->godina_proizvodnje;
+                $post->kubikaza = $request->kubikaza;
+                $post->kilometraza = $request->kilometraza;
+                $post->boja = $request->boja;
+                $post->registrovan = $request->registrovan;
+                $post->datum_isteka = $request->datum_isteka;
+                $post->opis = $request->opis;
+                $post->stanje = $request->stanje;
+                $post->lokacija = $request->lokacija;
+                $post->kontakt = $request->kontakt;
+                $post->cijena = $request->cijena;
+                $post->sirina = $request->sirina;
+                $post->duzina = $request->duzina;
+                $post->user_id = $request->user_id;
+                break;
+
+                $post->save();
+
+            case('hranapolja'):
+                $post = hranapolja::find($request->id);
+                $post->modcijena=$request->cijena;
+                $post->naziv=$request->naziv;
+                $post->opis=$request->opis;
+                $post->save();
+
+            case('nekretninepolja'):
+                $post = nekretninepolja::find($request->id);
+                $post->modcijena=$request->cijena;
+                $post->naziv=$request->naziv;
+                $post->opis=$request->opis;
+                $post->save();
+
+            case('odjecapolja'):
+                $post = odjecapolja::find($request->id);
+                $post->modcijena=$request->cijena;
+                $post->naziv=$request->naziv;
+                $post->opis=$request->opis;
+                $post->save();
+            case('posaopolja'):
+                $post = posaopolja::find($request->id);
+                $post->modcijena=$request->cijena;
+                $post->naziv=$request->naziv;
+                $post->opis=$request->opis;
+                $post->save();
+            case('raznopolja'):
+                $post = raznopolja::find($request->id);
+                $post->modcijena=$request->cijena;
+                $post->naziv=$request->naziv;
+                $post->opis=$request->opis;
+                $post->save();
+            case('tehnikapolja'):
+                $post = tehnikapolja::find($request->id);
+                $post->modcijena=$request->cijena;
+                $post->naziv=$request->naziv;
+                $post->opis=$request->opis;
+                $post->save();;
+
+        }
+
+
+
+
+    }
 
 
     public function deleteNew(Request $request)
