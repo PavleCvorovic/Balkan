@@ -554,24 +554,9 @@ echo $request->index;
         switch($request->index) {
             case('automotopolja'):
                 $post= automotopolja::find($request->id);
-                $post->automoto_vrsta = $request->automoto_vrsta;
-                $post->naziv = $request->naziv;
-                $post->marka = $request->marka;
-                $post->model = $request->model;
-                $post->godina_proizvodnje = $request->godina_proizvodnje;
-                $post->kubikaza = $request->kubikaza;
-                $post->kilometraza = $request->kilometraza;
-                $post->boja = $request->boja;
-                $post->registrovan = $request->registrovan;
-                $post->datum_isteka = $request->datum_isteka;
-                $post->opis = $request->opis;
-                $post->stanje = $request->stanje;
-                $post->lokacija = $request->lokacija;
-                $post->kontakt = $request->kontakt;
-                $post->cijena = $request->cijena;
-                $post->sirina = $request->sirina;
-                $post->duzina = $request->duzina;
-                $post->user_id = $request->user_id;
+                $post->modcijena=$request->cijena;
+                $post->naziv=$request->naziv;
+                $post->opis=$request->opis;
 
 
                 $post->save();
@@ -582,41 +567,48 @@ echo $request->index;
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
                 $post->save();
-
+                break;
             case('nekretninepolja'):
                 $post = nekretninepolja::find($request->id);
                 $post->modcijena=$request->cijena;
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
                 $post->save();
-
+                break;
             case('odjecapolja'):
                 $post = odjecapolja::find($request->id);
                 $post->modcijena=$request->cijena;
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
                 $post->save();
+                break;
             case('posaopolja'):
                 $post = posaopolja::find($request->id);
                 $post->modcijena=$request->cijena;
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
                 $post->save();
+                break;
             case('raznopolja'):
                 $post = raznopolja::find($request->id);
                 $post->modcijena=$request->cijena;
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
+
                 $post->save();
+                 break;
             case('tehnikapolja'):
                 $post = tehnikapolja::find($request->id);
-                $post->modcijena=$request->cijena;
+
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
-                $post->save();;
+                $post->save();
+                break;
 
         }
-
+        $id=$request->user_id;
+                 $res= $this->getPostbyUser($id);
+        return $res;
 
 
 
