@@ -151,15 +151,9 @@ $data['token'] = auth()->claims([
             }
             array_push($svi, $raz);
         }
-        $niz=[];
-        foreach ($svi as $dijete){
-            foreach ($dijete as $value){
-                $niz[]=$value;
+      return $svi;
 
-            }
-            return $niz;
-
-    }}
+    }
 
     public function getPostbyIdUser(Request $request)
     {
@@ -554,15 +548,24 @@ public function getAllFeatured(){
 
 
 
+
+
     public function modPostUser(Request $request)
     {
         $id=$request->user_id;
         switch($request->index) {
             case('automotopolja'):
                 $post= automotopolja::find($request->id);
-                $post->modcijena=$request->cijena;
+
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
+                if($post->cijena != $request->cijena) {
+                    $post->modcijena=$request->cijena;
+                    $a = 100 * ($post->cijena - $request->cijena) / $post->cijena;
+                     $b=round($a);
+                    $c= abs($b);
+                    $post->procenat = $c;
+                }
 
 
                 $post->save();
@@ -570,49 +573,92 @@ public function getAllFeatured(){
                 break;
             case('hranapolja'):
                 $post = hranapolja::find($request->id);
-                $post->modcijena=$request->cijena;
+
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
+                if($post->cijena != $request->cijena) {
+                    $post->modcijena=$request->cijena;
+                    $a = 100 * ($post->cijena - $request->cijena) / $post->cijena;
+                    $b=round($a);
+                    $c= abs($b);
+                    $post->procenat = $c;
+                }
                 $post->save();
                 return $this->getPostbyUser($id);
                 break;
             case('nekretninepolja'):
                 $post = nekretninepolja::find($request->id);
-                $post->modcijena=$request->cijena;
+
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
+                if($post->cijena != $request->cijena) {
+                    $post->modcijena=$request->cijena;
+                    $a = 100 * ($post->cijena - $request->cijena) / $post->cijena;
+                    $b=round($a);
+                    $c= abs($b);
+                    $post->procenat = $c;
+                }
                 $post->save();
                 return $this->getPostbyUser($id);
                 break;
             case('odjecapolja'):
                 $post = odjecapolja::find($request->id);
-                $post->modcijena=$request->cijena;
+
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
+                if($post->cijena != $request->cijena) {
+                    $post->modcijena=$request->cijena;
+                    $a = 100 * ($post->cijena - $request->cijena) / $post->cijena;
+                    $b=round($a);
+                    $c= abs($b);
+                    $post->procenat = $c;
+                }
                 $post->save();
                 return $this->getPostbyUser($id);
                 break;
             case('posaopolja'):
                 $post = posaopolja::find($request->id);
-                $post->modcijena=$request->cijena;
+
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
+                if($post->cijena != $request->cijena) {
+                    $post->modcijena=$request->cijena;
+                    $a = 100 * ($post->cijena - $request->cijena) / $post->cijena;
+                    $b=round($a);
+                    $c= abs($b);
+                    $post->procenat = $c;
+                }
                 $post->save();
                 return $this->getPostbyUser($id);
                 break;
             case('raznopolja'):
                 $post = raznopolja::find($request->id);
-                $post->modcijena=$request->cijena;
+
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
+                if($post->cijena != $request->cijena) {
+                    $post->modcijena=$request->cijena;
+                    $a = 100 * ($post->cijena - $request->cijena) / $post->cijena;
+                    $b=round($a);
+                    $c= abs($b);
+                    $post->procenat = $c;
+                }
                 $post->save();
                 return $this->getPostbyUser($id);
                  break;
             case('tehnikapolja'):
                 $post = tehnikapolja::find($request->id);
-                $post->modcijena=$request->cijena;
+
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
+                if($post->cijena != $request->cijena) {
+                    $post->modcijena=$request->cijena;
+                    $a = 100 * ($post->cijena - $request->cijena) / $post->cijena;
+                    $b=round($a);
+                    $c= abs($b);
+                    $post->procenat = $c;
+
+                }
                 $post->save();
                 return $this->getPostbyUser($id);
                 break;
