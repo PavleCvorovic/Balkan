@@ -151,9 +151,15 @@ $data['token'] = auth()->claims([
             }
             array_push($svi, $raz);
         }
-return $svi;
+        $niz=[];
+        foreach ($svi as $dijete){
+            foreach ($dijete as $value){
+                $niz[]=$value;
 
-    }
+            }
+            return $niz;
+
+    }}
 
     public function getPostbyIdUser(Request $request)
     {
@@ -550,7 +556,7 @@ public function getAllFeatured(){
 
     public function modPostUser(Request $request)
     {
-echo $request->index;
+        $id=$request->user_id;
         switch($request->index) {
             case('automotopolja'):
                 $post= automotopolja::find($request->id);
@@ -560,6 +566,7 @@ echo $request->index;
 
 
                 $post->save();
+                return $this->getPostbyUser($id);
                 break;
             case('hranapolja'):
                 $post = hranapolja::find($request->id);
@@ -567,6 +574,7 @@ echo $request->index;
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
                 $post->save();
+                return $this->getPostbyUser($id);
                 break;
             case('nekretninepolja'):
                 $post = nekretninepolja::find($request->id);
@@ -574,6 +582,7 @@ echo $request->index;
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
                 $post->save();
+                return $this->getPostbyUser($id);
                 break;
             case('odjecapolja'):
                 $post = odjecapolja::find($request->id);
@@ -581,6 +590,7 @@ echo $request->index;
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
                 $post->save();
+                return $this->getPostbyUser($id);
                 break;
             case('posaopolja'):
                 $post = posaopolja::find($request->id);
@@ -588,27 +598,30 @@ echo $request->index;
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
                 $post->save();
+                return $this->getPostbyUser($id);
                 break;
             case('raznopolja'):
                 $post = raznopolja::find($request->id);
                 $post->modcijena=$request->cijena;
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
-
                 $post->save();
+                return $this->getPostbyUser($id);
                  break;
             case('tehnikapolja'):
                 $post = tehnikapolja::find($request->id);
-
+                $post->modcijena=$request->cijena;
                 $post->naziv=$request->naziv;
                 $post->opis=$request->opis;
                 $post->save();
+                return $this->getPostbyUser($id);
                 break;
 
         }
-        $id=$request->user_id;
-                 $res= $this->getPostbyUser($id);
-        return $res;
+
+
+
+
 
 
 
