@@ -40,6 +40,7 @@ class CreateTehnikapoljaTable extends Migration
 
 
 
+
         });
     }
 

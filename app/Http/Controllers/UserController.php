@@ -504,12 +504,12 @@ public function getAllFeatured(){
                 $post = automotopolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return automotopolja::all();
+
             case('hranapolja'):
                 $post = hranapolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return hranapolja::all();
+
             case('nekretninepolja'):
                 $post = nekretninepolja::find($request->id);
                 $post ->javno = 1;
@@ -519,24 +519,26 @@ public function getAllFeatured(){
                 $post = odjecapolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return odjecapolja::all();
+
             case('posaopolja'):
                 $post = posaopolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return posaopolja::all();
+
             case('raznopolja'):
                 $post = raznopolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return raznopolja::all();
+
             case('tehnikapolja'):
                 $post = tehnikapolja::find($request->id);
                 $post ->javno = 1;
                 $post->save();
-                return tehnikapolja::all();
+
 
         }
+
+        return $this->getAllNew();
 
 
 

@@ -10,6 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 class HranaiPice1 extends Model
 {
     use HasFactory;
-
+    public $timestamps= false;
     protected $table ='hrana_ipice';
 }
