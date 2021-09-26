@@ -701,7 +701,7 @@ public function getAllFeatured(){
 
             case('nekretninepolja'):
                 DB::select('delete  from slika where slika_nekretnine=' . $request->id);
-                DB::select('delete  from nekreninepolja where id=' . $request->id);
+                DB::select('delete  from nekretninepolja where id=' . $request->id);
 
             case('odjecapolja'):
                 DB::select('delete  from slika where slika_odjeca=' . $request->id);
