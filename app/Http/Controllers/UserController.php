@@ -158,28 +158,28 @@ $data['token'] = auth()->claims([
 
     public function getPostbyIdUser(Request $request)
     {
-
+$id=$request->id;
         switch($request->tabela) {
             case('automotopolja'):
-              $aut=  automotopolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+              $aut=  automotopolja::find($id);
 return $aut;
             case('hranapolja'):
-                $hra=  hranapolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                $hra=  hranapolja::find($id);
                 return $hra;
             case('nekretninepolja'):
-                $nek=  nekretninepolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                $nek=  nekretninepolja::find($id);
                 return $nek;
             case('odjecapolja'):
-                $odj=  odjecapolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                $odj=  odjecapolja::find($id);
                 return $odj;
             case('posaopolja'):
-                $pos=  posaopolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                $pos=  posaopolja::find($id);
                 return $pos;
             case('raznopolja'):
-                $raz=  raznopolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                $raz=  raznopolja::find($id);
                 return $raz;
             case('tehnikapolja'):
-                $teh=  tehnikapolja::all()->where('user_id','=',$request->user_id)->where('id','=',$request->id);
+                $teh=  tehnikapolja::find($request->id);
                 return $teh;
 
         }}
