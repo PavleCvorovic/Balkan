@@ -4,9 +4,9 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\HranaiPice1;
+
+use App\Models\hranapolja;
 use App\Models\slika;
-use App\Models\HranaiPice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +14,7 @@ class hranaController extends \Illuminate\Routing\Controller
 {
 
     public function getAllTypes(){
-        return HranaiPice1::all();
+        return hranapolja::all();
     }
     public  function  getType($tip){
 
@@ -32,7 +32,7 @@ class hranaController extends \Illuminate\Routing\Controller
 
 
     public function getAll() {
-        $svi = HranaiPice::all();
+        $svi = hranapolja::all();
         for ($i = 0; $i < sizeof($svi); $i++) {
             $svi[$i]->slika = slika::where('slika_hrana', $svi[$i]->id)->first();
         }
@@ -40,7 +40,7 @@ class hranaController extends \Illuminate\Routing\Controller
     }
 
     public  function getId($id){
-        $rezultat1= HranaiPice::find($id);
+        $rezultat1= hranapolja::find($id);
         $rezultat=  DB::select('select url from slika where slika_hrana='.$id);
         $rezultat1->podaci=$rezultat;
         return $rezultat1;
@@ -48,16 +48,16 @@ class hranaController extends \Illuminate\Routing\Controller
     public function delAll(){
         DB::select('delete from slika where slika_hrana>=1 ');
         DB::select('delete  from hranapolja');
-        return HranaiPice::all();
+        return hranapolja::all();
     }
     public function delId($id){
         DB::select('delete  from slika where slika_hrana='.$id);
         DB::select('delete  from hranapolja where id='.$id);
-        return HranaiPice::all();
+        return hranapolja::all();
     }
     public function addPost(Request $request)
     {
-        $produkt = new HranaiPice();
+        $produkt = new hranapolja();
         $produkt->hrana_vrsta = $request->hrana_vrsta;
         $produkt->kolicina = $request->kolicina;
         $produkt->naziv = $request->naziv;
@@ -105,12 +105,12 @@ class hranaController extends \Illuminate\Routing\Controller
             }
         }
 
- return HranaiPice::all();
+ return hranapolja::all();
 
 
     }
     public function modPostbyId(Request $request){
-        $post= HranaiPice::find($request->id);
+        $post= hranapolja::find($request->id);
 
         $post->hrana_vrsta = $request->hrana_vrsta;
         $post->kolicina = $request->kolicina;
@@ -126,7 +126,7 @@ class hranaController extends \Illuminate\Routing\Controller
 
 
         $post->save();
-        return HranaiPice::all();
+        return hranapolja::all();
     }
     public function Filter(Request $request){
 
@@ -138,7 +138,7 @@ class hranaController extends \Illuminate\Routing\Controller
 
 
 
-        $sve= HranaiPice::select('hranapolja.*')->where('javno',"1");
+        $sve= hranapolja::select('hranapolja.*')->where('javno',"1");
 
         if ($id)
             $sve= $sve->where('hrana_vrsta',$id);

@@ -11,6 +11,7 @@ use App\Models\razno;
 use App\Models\raznopolja;
 use App\Models\slika;
 use App\Models\tehnikapolja;
+use App\Models\hranapolja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -502,43 +503,43 @@ public function getAllFeatured(){
         switch($request->index) {
             case('automotopolja'):
                 $post = automotopolja::find($request->id);
-                $post ->javno = 1;
+                $post->javno = 1;
                 $post->save();
-
+                return $this->getAllNew();
             case('hranapolja'):
                 $post = hranapolja::find($request->id);
-                $post ->javno = 1;
+                $post->javno = 1;
                 $post->save();
-
+                return $this->getAllNew();
             case('nekretninepolja'):
                 $post = nekretninepolja::find($request->id);
-                $post ->javno = 1;
+                $post->javno = 1;
                 $post->save();
-                return nekretninepolja::all();
+                return $this->getAllNew();
             case('odjecapolja'):
                 $post = odjecapolja::find($request->id);
-                $post ->javno = 1;
+                $post->javno = 1;
                 $post->save();
-
+                return $this->getAllNew();
             case('posaopolja'):
                 $post = posaopolja::find($request->id);
-                $post ->javno = 1;
+                $post->javno = 1;
                 $post->save();
-
+                return $this->getAllNew();
             case('raznopolja'):
                 $post = raznopolja::find($request->id);
-                $post ->javno = 1;
+                $post->javno = 1;
                 $post->save();
-
+                return $this->getAllNew();
             case('tehnikapolja'):
                 $post = tehnikapolja::find($request->id);
-                $post ->javno = 1;
+                $post->javno = 1;
                 $post->save();
-
+                return $this->getAllNew();
 
         }
 
-        return $this->getAllNew();
+
 
 
 
@@ -689,23 +690,23 @@ public function getAllFeatured(){
                 DB::select('delete  from hranapolja where id=' . $request->id);
             case('nekretninepolja'):
                 DB::select('delete  from slika where slika_nekretnine=' . $request->id);
-                DB::select('delete  from nekreninepolja where id=' . $request->id);
-            case('odjecapolja'):
-                DB::select('delete  from slika where slika_odjeca=' . $request->id);
-                DB::select('delete  from odjecapolja where id=' . $request->id);
-
-
-            case('hranapolja'):
-                DB::select('delete  from slika where slika_hrana=' . $request->id);
-                DB::select('delete  from hranapolja where id=' . $request->id);
-
-            case('nekretninepolja'):
-                DB::select('delete  from slika where slika_nekretnine=' . $request->id);
                 DB::select('delete  from nekretninepolja where id=' . $request->id);
-
             case('odjecapolja'):
                 DB::select('delete  from slika where slika_odjeca=' . $request->id);
                 DB::select('delete  from odjecapolja where id=' . $request->id);
+
+//
+//            case('hranapolja'):
+//                DB::select('delete  from slika where slika_hrana=' . $request->id);
+//                DB::select('delete  from hranapolja where id=' . $request->id);
+
+//            case('nekretninepolja'):
+//                DB::select('delete  from slika where slika_nekretnine=' . $request->id);
+//                DB::select('delete  from nekretninepolja where id=' . $request->id);
+//
+//            case('odjecapolja'):
+//                DB::select('delete  from slika where slika_odjeca=' . $request->id);
+//                DB::select('delete  from odjecapolja where id=' . $request->id);
 
             case('posaopolja'):
                 DB::select('delete  from slika where slika_posao=' . $request->id);
