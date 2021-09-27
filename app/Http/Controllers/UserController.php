@@ -29,9 +29,10 @@ class UserController extends Controller
     public function register(Request $request){
 $user=User::where('email',$request['email'])->first();
 $user1=User::where('name',$request['name'])->first();
+        $result = filter_var( $request->email, FILTER_VALIDATE_EMAIL );
 if ($user){
     $response['status']=0;
-    $response['message']='Duplikat email';
+    $response['message']='Duplikat email-a';
     $response['code']=409;
 }
 
@@ -39,10 +40,18 @@ if ($user){
         elseif($user1){
 
                 $response['status']=0;
-                $response['message']='Duplikat username';
+                $response['message']='Duplikat username-a';
                 $response['code']=409;
 
         }
+
+elseif ($result==false){
+    $response['status']=0;
+    $response['message']='Nepostojeci email';
+    $response['code']=409;
+
+}
+
             else{
 
 
@@ -56,7 +65,7 @@ if ($user){
 
  );
 $response['status']=1;
-$response['message']='Svaka caaast';
+$response['message']='Čestitamo uspješno ste se registrovali na Balkazonu !';
 $response['code']=200;
 
 
