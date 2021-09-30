@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Kod dodavanja, dodajes sve podatke iz tabele, prvu_sliku i slike(ostale slike), poljima sa ekstenzijom _vrsta saljes tip iz njihove roditeljske tabele.
 //Kod modifikovanja, ID oglasa koji se izmjenjuje saljes zajedno sa objektom u koji stoje ostale promjene
-
+Route::post('sendbasicemail','MailController@basic_email');
 
 
 
