@@ -29,7 +29,7 @@ class UserController extends Controller
     public function register(Request $request){
 $user=User::where('email',$request['email'])->first();
 $user1=User::where('name',$request['name'])->first();
-        $result = filter_var( $request->email, FILTER_VALIDATE_EMAIL );
+
 if ($user){
     $response['status']=0;
     $response['message']='Duplikat email-a';
@@ -45,12 +45,6 @@ if ($user){
 
         }
 
-elseif ($result==false){
-    $response['status']=0;
-    $response['message']='Nepostojeci email';
-    $response['code']=409;
-
-}
 
             else{
 
