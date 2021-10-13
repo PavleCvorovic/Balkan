@@ -70,7 +70,7 @@ class posaoController extends \Illuminate\Routing\Controller
         $produkt->plata = $request->plata;
         $produkt->lokacija = $request->lokacija;
         $produkt->kontakt = $request->kontakt;
-        $produkt->javno = 0;
+        $produkt->javno = 1;
         $produkt->sirina = $request->sirina;
         $produkt->duzina = $request->duzina;
         $produkt->user_id = $request->user_id;
